@@ -1,0 +1,25 @@
+{
+  "exact": [
+    {
+      "address1": "625 C St 4 5",
+      "address2": "5",
+      "city": "Oregon City",
+      "state": "OR",
+      "zip": "97045",
+      "id": "addr_01KNVENDVQPFY2K1HKEZHKQDNS",
+      "firstName": "Trupti",
+      "lastName": "Bhosale",
+      "country": "US",
+      "phone": "(503) 123-4455",
+      "shippingNote": "",
+      "preferred": false,
+      "validated": true
+    }
+  ],
+  "inexact": null,
+  "possibleNextAction": "ACCEPT",
+  "unconfirmedComponentTypes": [
+    "subpremise"
+  ],
+  "responseId": "77e5ef5a-27d6-4f07-a653-4041844ee0c1"
+}

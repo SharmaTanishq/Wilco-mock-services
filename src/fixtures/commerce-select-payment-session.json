@@ -1,0 +1,496 @@
+{
+  "id": "cart_01KQRXZM0KS9P742ZAVKQVB129",
+  "email": "trupti.bhosale@yopmail.com",
+  "customerId": "cus_01KNVDPZAY7DM5YZ9WPV7NY5FC",
+  "billingAddress": {
+    "address1": "625 C St 4 5",
+    "address2": "5",
+    "city": "Oregon City",
+    "state": "OR",
+    "zip": "97045",
+    "id": "addr_01KQS88B76QZ5KZWHD8AE2B0GT",
+    "firstName": "Trupti",
+    "lastName": "Bhosale",
+    "preferred": false,
+    "shippingNote": "",
+    "country": "us",
+    "phone": "(503) 123-4455",
+    "validated": true,
+    "altPickupPersonFirstName": "",
+    "altPickupPersonLastName": "",
+    "altPickupPersonPhone": "",
+    "customerOverride": false,
+    "adminOverride": false,
+    "createdAt": "2026-05-04T10:24:01.673Z",
+    "updatedAt": "2026-05-04T14:54:50.284Z"
+  },
+  "shippingAddress": {
+    "address1": "625 C St #4",
+    "address2": "4",
+    "city": "Oregon City",
+    "state": "OR",
+    "zip": "97045",
+    "id": "addr_01KQRXZM0M6QECC0G3JJVR49SR",
+    "firstName": "Trupti",
+    "lastName": "Bhosale",
+    "preferred": false,
+    "shippingNote": "",
+    "country": "us",
+    "phone": "(503) 123-4455",
+    "validated": true,
+    "altPickupPersonFirstName": "",
+    "altPickupPersonLastName": "",
+    "altPickupPersonPhone": "",
+    "customerOverride": false,
+    "adminOverride": false,
+    "createdAt": "2026-05-04T07:24:30.090Z",
+    "updatedAt": "2026-05-04T10:24:01.673Z"
+  },
+  "items": [
+    {
+      "id": "item_01KQS887YT47VQYFQTAGPT2E87",
+      "variantId": "variant_01K06D3R6WSV2Z87BSSES5GHNH",
+      "variant": {
+        "id": "variant_01K06D3R6WSV2Z87BSSES5GHNH",
+        "variantId": "variant_01K06D3R6WSV2Z87BSSES5GHNH",
+        "productId": "prod_01K06D3R65ZYFPTWYRZW70SAJ9",
+        "title": "Natural Balance, Fish & Sweet Potato - 24 lb",
+        "sku": "1038510",
+        "height": 26,
+        "width": 17.09,
+        "length": 3.51,
+        "weight": 24,
+        "options": [],
+        "prices": [],
+        "metadata": {
+          "image": "https://media.farmstore.com/20221114163530/1038506-510x577.jpg",
+          "quantityDiscounts": [],
+          "isDiscontinued": false,
+          "inventory": [
+            {
+              "quantity": 7,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 1
+            },
+            {
+              "quantity": 5,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 2
+            },
+            {
+              "quantity": 5,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 3
+            },
+            {
+              "quantity": 8,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 4
+            },
+            {
+              "quantity": 7,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 5
+            },
+            {
+              "quantity": 2,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 6
+            },
+            {
+              "quantity": 6,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 7
+            },
+            {
+              "quantity": 0,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 8
+            },
+            {
+              "quantity": 9,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 9
+            },
+            {
+              "quantity": 5,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 10
+            },
+            {
+              "quantity": 2,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 11
+            },
+            {
+              "quantity": 7,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 12
+            },
+            {
+              "quantity": 5,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 13
+            },
+            {
+              "quantity": null,
+              "salePrice": null,
+              "retailPrice": null,
+              "storeNumber": 14
+            },
+            {
+              "quantity": 3,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 15
+            },
+            {
+              "quantity": 9,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 16
+            },
+            {
+              "quantity": 8,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 17
+            },
+            {
+              "quantity": 6,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 18
+            },
+            {
+              "quantity": 7,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 19
+            },
+            {
+              "quantity": 6,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 20
+            },
+            {
+              "quantity": 1,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 21
+            },
+            {
+              "quantity": 6,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 22
+            },
+            {
+              "quantity": 7,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 23
+            },
+            {
+              "quantity": 4,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 24
+            },
+            {
+              "quantity": 3,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 25
+            },
+            {
+              "quantity": 5,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 26
+            },
+            {
+              "quantity": 5,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 27
+            },
+            {
+              "quantity": 0,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 49
+            },
+            {
+              "quantity": 0,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 90
+            },
+            {
+              "quantity": 0,
+              "salePrice": 59.99,
+              "retailPrice": 74.99,
+              "storeNumber": 99
+            }
+          ],
+          "retailPrice": 74.99,
+          "salePrice": 59.99,
+          "lowestDisplayPrice": 69.33,
+          "weightUnit": "LB",
+          "reviewPageId": "ECOM-236",
+          "departmentName": "PET FOOD",
+          "manufacturerName": "NATURAL BALANCE",
+          "className": "DRY DOG FOOD"
+        },
+        "product": {
+          "id": "prod_01K06D3R65ZYFPTWYRZW70SAJ9",
+          "displayId": 236,
+          "title": "Natural Balance, Fish & Sweet Potato",
+          "handle": "natural-balance-fish-sweet-potato-236",
+          "productUrl": "https://staging.farmstore-modern.us/product/miscellaneous/natural-balance-fish-sweet-potato-236",
+          "description": null,
+          "strictImap": false,
+          "images": [],
+          "options": [],
+          "metadata": {
+            "featured": true,
+            "featuredPosition": 1,
+            "notSoldOnline": false,
+            "pickupOnly": false,
+            "hidePricingOnline": false,
+            "strictImap": false,
+            "isNew": false,
+            "highlights": [
+              "Highly digestible grain-free energy source.",
+              "Excellent when seeking alternative ingredients.",
+              "Supports healthy skin and shiny coat."
+            ],
+            "relatedProducts": [],
+            "purchaseLimit": null,
+            "limitedStockQuantity": 1,
+            "excludedStates": []
+          },
+          "prop65Warning": null,
+          "items": [],
+          "createdAt": "2025-12-11T12:02:09.402Z",
+          "brand": {
+            "id": 159,
+            "name": "Natural Balance",
+            "image": {
+              "alt": "Natural Balance",
+              "src": "https://media.farmstore.com/20221213083016/New-NB-Logo-1-510x577.jpg",
+              "thumbnail": "https://media.farmstore.com/20221213083016/New-NB-Logo-1-247x296.jpg"
+            }
+          },
+          "categories": []
+        }
+      },
+      "title": "Natural Balance, Fish & Sweet Potato",
+      "thumbnail": "https://media.farmstore.com/20221114163530/1038506-510x577.jpg",
+      "quantity": 1,
+      "total": 64.85,
+      "metadata": {
+        "quantityDiscounts": [],
+        "retailPrice": 74.99,
+        "salePrice": 59.99,
+        "fulfillment": "Pickup",
+        "sku": "1038510",
+        "storeNumber": 13,
+        "storeName": "Oregon City",
+        "taxCalculated": false
+      },
+      "unitPrice": 59.99
+    }
+  ],
+  "region": {
+    "id": "reg_g4nllx1g59dEOLObWbXRn",
+    "created_at": "2025-12-11T06:10:49.883Z",
+    "updated_at": "2025-12-11T06:10:49.883Z",
+    "deleted_at": null,
+    "name": "NA",
+    "currency_code": "usd",
+    "tax_rate": 0,
+    "tax_code": null,
+    "gift_cards_taxable": true,
+    "automatic_taxes": true,
+    "tax_provider_id": null,
+    "metadata": null,
+    "countries": [
+      {
+        "id": 236,
+        "iso_2": "us",
+        "iso_3": "usa",
+        "num_code": 840,
+        "name": "UNITED STATES",
+        "display_name": "United States",
+        "region_id": "reg_g4nllx1g59dEOLObWbXRn"
+      }
+    ],
+    "payment_providers": [
+      {
+        "id": "wilco-acceptjs-payment",
+        "is_installed": true
+      },
+      {
+        "id": "paypal",
+        "is_installed": true
+      }
+    ],
+    "tax_rates": []
+  },
+  "discounts": [],
+  "giftCards": [],
+  "customer": null,
+  "paymentSession": {
+    "id": "ps_01KQS88BWVGTVJKXB30CB3NHWS",
+    "created_at": "2026-05-04T10:24:02.457Z",
+    "updated_at": "2026-05-04T14:56:38.660Z",
+    "cart_id": "cart_01KQRXZM0KS9P742ZAVKQVB129",
+    "provider_id": "wilco-acceptjs-payment",
+    "is_selected": true,
+    "is_initiated": true,
+    "status": "authorized",
+    "data": {
+      "billTo": {
+        "zip": "97045",
+        "city": "Oregon City",
+        "state": "OR",
+        "address": "625 C St #4",
+        "country": "US",
+        "lastName": "Bhosale",
+        "firstName": "Trupti"
+      },
+      "transId": "120082090238",
+      "dateTime": "5/4/2026 10:26:26 AM",
+      "accountType": "Visa",
+      "totalAmount": "64.85",
+      "issuerNumber": "1111",
+      "responseCode": "1",
+      "accountNumber": "XXXX1111",
+      "authorization": "YVCF2Q",
+      "transactionId": "120082090238",
+      "kountSessionId": "dcadda6c-95b8-444a-bda9-2c03d8131c71",
+      "orderDescription": "cart_01KQRXZM0KS9P742ZAVKQVB129"
+    },
+    "idempotency_key": null,
+    "amount": 6485,
+    "payment_authorized_at": "2026-05-04T10:26:31.766Z"
+  },
+  "paymentSessions": [
+    {
+      "id": "ps_01KQS88BWVGTVJKXB30CB3NHWS",
+      "created_at": "2026-05-04T10:24:02.457Z",
+      "updated_at": "2026-05-04T14:56:38.660Z",
+      "cart_id": "cart_01KQRXZM0KS9P742ZAVKQVB129",
+      "provider_id": "wilco-acceptjs-payment",
+      "is_selected": true,
+      "is_initiated": true,
+      "status": "authorized",
+      "data": {
+        "billTo": {
+          "zip": "97045",
+          "city": "Oregon City",
+          "state": "OR",
+          "address": "625 C St #4",
+          "country": "US",
+          "lastName": "Bhosale",
+          "firstName": "Trupti"
+        },
+        "transId": "120082090238",
+        "dateTime": "5/4/2026 10:26:26 AM",
+        "accountType": "Visa",
+        "totalAmount": "64.85",
+        "issuerNumber": "1111",
+        "responseCode": "1",
+        "accountNumber": "XXXX1111",
+        "authorization": "YVCF2Q",
+        "transactionId": "120082090238",
+        "kountSessionId": "dcadda6c-95b8-444a-bda9-2c03d8131c71",
+        "orderDescription": "cart_01KQRXZM0KS9P742ZAVKQVB129"
+      },
+      "idempotency_key": null,
+      "amount": 6485,
+      "payment_authorized_at": "2026-05-04T10:26:31.766Z"
+    },
+    {
+      "id": "ps_01KQS88BWXYNHV8TJSXRKP7D2T",
+      "created_at": "2026-05-04T10:24:02.457Z",
+      "updated_at": "2026-05-04T14:56:38.660Z",
+      "cart_id": "cart_01KQRXZM0KS9P742ZAVKQVB129",
+      "provider_id": "paypal",
+      "is_selected": null,
+      "is_initiated": false,
+      "status": "pending",
+      "data": {},
+      "idempotency_key": null,
+      "amount": 6485,
+      "payment_authorized_at": null
+    }
+  ],
+  "payment": {
+    "id": "pay_01KQS8CXPYJ03KSCW4WQXZMN2S",
+    "created_at": "2026-05-04T10:26:31.715Z",
+    "updated_at": "2026-05-04T10:26:31.795Z",
+    "swap_id": null,
+    "cart_id": "cart_01KQRXZM0KS9P742ZAVKQVB129",
+    "order_id": "order_01KQS8CXSE1P0A1GK1TB9K3RRQ",
+    "amount": 6485,
+    "currency_code": "usd",
+    "amount_refunded": 0,
+    "provider_id": "wilco-acceptjs-payment",
+    "data": {
+      "billTo": {
+        "zip": "97045",
+        "city": "Oregon City",
+        "state": "OR",
+        "address": "625 C St #4",
+        "country": "US",
+        "lastName": "Bhosale",
+        "firstName": "Trupti"
+      },
+      "transId": "120082090238",
+      "dateTime": "5/4/2026 10:26:26 AM",
+      "accountType": "Visa",
+      "totalAmount": "64.85",
+      "issuerNumber": "1111",
+      "responseCode": "1",
+      "accountNumber": "XXXX1111",
+      "authorization": "YVCF2Q",
+      "transactionId": "120082090238",
+      "kountSessionId": "",
+      "orderDescription": "cart_01KQRXZM0KS9P742ZAVKQVB129"
+    },
+    "captured_at": null,
+    "canceled_at": null,
+    "metadata": null,
+    "idempotency_key": null
+  },
+  "shippingMethods": [],
+  "shippingTotal": 0,
+  "discountTotal": 0,
+  "itemTaxTotal": 4.86,
+  "shippingTaxTotal": 0,
+  "taxTotal": 4.86,
+  "total": 64.85,
+  "subtotal": 59.99,
+  "giftCardTotal": 0,
+  "giftCardTaxTotal": 0,
+  "createdAt": "2026-05-04T07:24:30.090Z",
+  "updatedAt": "2026-05-04T10:26:31.795Z",
+  "completedAt": "2026-05-04T10:26:31.885Z"
+}

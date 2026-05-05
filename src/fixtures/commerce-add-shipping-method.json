@@ -1,0 +1,456 @@
+{
+  "taxTotal": 0,
+  "createdAt": "2026-04-27T13:11:54.530Z",
+  "total": 18.07,
+  "discounts": [],
+  "customerId": "cus_01KPWMTJWS97KH3Z7Q1VEDG18Q",
+  "payment": null,
+  "id": "cart_01KQ7H2PXCSSHSD78KSNFNQ2ZH",
+  "email": "trupti.bhosale@yopmail.com",
+  "shippingMethods": [
+    {
+      "tax_total": 0,
+      "data": {},
+      "original_total": 1108,
+      "original_tax_total": 0,
+      "shipping_option_id": "so_dUBq0rvRqKAj1YOzHxIYh",
+      "return_id": null,
+      "claim_order_id": null,
+      "swap_id": null,
+      "shipping_option": {
+        "amount": null,
+        "metadata": null,
+        "data": {
+          "name": "Ground",
+          "service_code": "03",
+          "id": "ups-fulfillment"
+        },
+        "region_id": "reg_g4nllx1g59dEOLObWbXRn",
+        "created_at": "2025-12-11T06:10:45.857Z",
+        "deleted_at": null,
+        "is_return": false,
+        "updated_at": "2025-12-11T06:10:45.857Z",
+        "profile_id": "sp_hWRP6QCnFg2a18oZ4txdt",
+        "name": "Ground (UPS)",
+        "provider_id": "ups-fulfillment",
+        "price_type": "calculated",
+        "id": "so_dUBq0rvRqKAj1YOzHxIYh",
+        "admin_only": false
+      },
+      "cart_id": "cart_01KQ7H2PXCSSHSD78KSNFNQ2ZH",
+      "total": 1108,
+      "tax_lines": [
+        {
+          "code": "default",
+          "shipping_method_id": "sm_01KQ7H2WJKH9JHJ1VEV535SV6R",
+          "rate": 0,
+          "name": "default"
+        }
+      ],
+      "price": 1108,
+      "subtotal": 1108,
+      "id": "sm_01KQ7H2WJKH9JHJ1VEV535SV6R",
+      "order_id": null
+    }
+  ],
+  "itemTaxTotal": 0,
+  "updatedAt": "2026-04-27T13:11:58.274Z",
+  "completedAt": null,
+  "giftCardTaxTotal": 0,
+  "shippingTaxTotal": 0,
+  "shippingTotal": 11.08,
+  "giftCardTotal": 0,
+  "discountTotal": 0,
+  "subtotal": 6.99,
+  "shippingAddress": {
+    "zip": "97045",
+    "lastName": "Bhosale",
+    "country": "us",
+    "address2": "4",
+    "city": "Oregon City",
+    "address1": "625 C St #4",
+    "altPickupPersonFirstName": "",
+    "altPickupPersonPhone": "",
+    "firstName": "Trupti",
+    "createdAt": "2026-04-27T13:11:54.530Z",
+    "phone": "(503) 123-4455",
+    "customerOverride": false,
+    "adminOverride": false,
+    "state": "OR",
+    "id": "addr_01KQ7H2PXCB1NFNJPZ7FGC48QG",
+    "altPickupPersonLastName": "",
+    "shippingNote": "",
+    "preferred": false,
+    "updatedAt": "2026-04-27T13:11:56.860Z"
+  },
+  "billingAddress": {
+    "zip": "97045",
+    "lastName": "Bhosale",
+    "country": "us",
+    "address2": "4",
+    "city": "Oregon City",
+    "address1": "625 C St #4",
+    "altPickupPersonFirstName": "",
+    "altPickupPersonPhone": "",
+    "firstName": "Trupti",
+    "createdAt": "2026-04-27T13:11:58.274Z",
+    "phone": "(503) 123-4455",
+    "customerOverride": false,
+    "adminOverride": false,
+    "state": "OR",
+    "id": "addr_01KQ7H2TK8SE9PJ3PYK7MRSKVF",
+    "altPickupPersonLastName": "",
+    "shippingNote": "",
+    "preferred": false,
+    "updatedAt": "2026-04-27T13:11:58.274Z"
+  },
+  "region": {
+    "metadata": null,
+    "automatic_taxes": true,
+    "tax_provider_id": null,
+    "created_at": "2025-12-11T06:10:49.883Z",
+    "countries": [
+      {
+        "iso_3": "usa",
+        "iso_2": "us",
+        "num_code": 840,
+        "name": "UNITED STATES",
+        "region_id": "reg_g4nllx1g59dEOLObWbXRn",
+        "id": 236,
+        "display_name": "United States"
+      }
+    ],
+    "deleted_at": null,
+    "currency_code": "usd",
+    "tax_rate": 0,
+    "tax_rates": [],
+    "tax_code": null,
+    "gift_cards_taxable": true,
+    "updated_at": "2025-12-11T06:10:49.883Z",
+    "payment_providers": [
+      {
+        "is_installed": true,
+        "id": "wilco-acceptjs-payment"
+      },
+      {
+        "is_installed": true,
+        "id": "paypal"
+      }
+    ],
+    "name": "NA",
+    "id": "reg_g4nllx1g59dEOLObWbXRn"
+  },
+  "giftCards": [],
+  "paymentSessions": [
+    {
+      "cart_id": "cart_01KQ7H2PXCSSHSD78KSNFNQ2ZH",
+      "amount": 1807,
+      "updated_at": "2026-04-27T13:11:59.356Z",
+      "is_initiated": false,
+      "data": {},
+      "is_selected": null,
+      "payment_authorized_at": null,
+      "created_at": "2026-04-27T13:11:58.960Z",
+      "provider_id": "wilco-acceptjs-payment",
+      "idempotency_key": null,
+      "id": "ps_01KQ7H2V7H8ZFCPGJ0Y1K5G3V9",
+      "status": "pending"
+    },
+    {
+      "cart_id": "cart_01KQ7H2PXCSSHSD78KSNFNQ2ZH",
+      "amount": 1807,
+      "updated_at": "2026-04-27T13:11:59.356Z",
+      "is_initiated": false,
+      "data": {},
+      "is_selected": null,
+      "payment_authorized_at": null,
+      "created_at": "2026-04-27T13:11:58.960Z",
+      "provider_id": "paypal",
+      "idempotency_key": null,
+      "id": "ps_01KQ7H2V7JS6JNRHFTYMTHWS9V",
+      "status": "pending"
+    }
+  ],
+  "items": [
+    {
+      "unitPrice": 6.99,
+      "thumbnail": "https://media.farmstore.com/20191023112925/1240969_HR-510x510.jpg",
+      "total": 6.99,
+      "metadata": {
+        "storeNumber": 13,
+        "salePrice": 0,
+        "quantityDiscounts": [],
+        "storeName": "Oregon City",
+        "fulfillment": "Ship To Home",
+        "retailPrice": 0
+      },
+      "quantity": 1,
+      "variant": {
+        "metadata": {
+          "departmentName": "PAINT & SUNDRIES",
+          "image": "https://media.farmstore.com/20191023112925/1240969_HR-510x510.jpg",
+          "salePrice": 0,
+          "manufacturerName": "3M",
+          "quantityDiscounts": [],
+          "lowestDisplayPrice": 0.01,
+          "isDiscontinued": false,
+          "className": "ADHESIVES & FILLERS",
+          "reviewPageId": "ECOM-9996",
+          "inventory": [
+            {
+              "storeNumber": 1,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 2,
+              "quantity": null,
+              "salePrice": null,
+              "retailPrice": null
+            },
+            {
+              "storeNumber": 3,
+              "quantity": null,
+              "salePrice": null,
+              "retailPrice": null
+            },
+            {
+              "storeNumber": 4,
+              "quantity": null,
+              "salePrice": null,
+              "retailPrice": null
+            },
+            {
+              "storeNumber": 5,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 6,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 7,
+              "quantity": 4,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 8,
+              "quantity": null,
+              "salePrice": null,
+              "retailPrice": null
+            },
+            {
+              "storeNumber": 9,
+              "quantity": 4,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 10,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 11,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 12,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 13,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 14,
+              "quantity": null,
+              "salePrice": null,
+              "retailPrice": null
+            },
+            {
+              "storeNumber": 15,
+              "quantity": 3,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 16,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 17,
+              "quantity": 3,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 18,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 19,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 20,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 21,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 22,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 23,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 24,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 25,
+              "quantity": 4,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 26,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 27,
+              "quantity": 2,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 49,
+              "quantity": 0,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 90,
+              "quantity": 0,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 99,
+              "quantity": 0,
+              "salePrice": null,
+              "retailPrice": 6.99
+            },
+            {
+              "storeNumber": 28,
+              "quantity": null,
+              "salePrice": null,
+              "retailPrice": null
+            },
+            {
+              "storeNumber": 29,
+              "quantity": null,
+              "salePrice": null,
+              "retailPrice": null
+            }
+          ],
+          "retailPrice": 6.99,
+          "weightUnit": "LB"
+        },
+        "product": {
+          "images": [],
+          "metadata": {
+            "pickupOnly": false,
+            "featured": false,
+            "limitedStockQuantity": 1,
+            "excludedStates": [],
+            "highlights": [
+              "Damage-free hanging",
+              "No nail holes",
+              "Holds strongly and removes cleanly",
+              "Picture locks in place",
+              "Works on a variety of surfaces",
+              "Allow for quick and easy decorating",
+              "Reposition for easy leveling"
+            ],
+            "notSoldOnline": false,
+            "hidePricingOnline": false,
+            "strictImap": false,
+            "featuredPosition": 10,
+            "relatedProducts": [],
+            "isNew": false,
+            "purchaseLimit": null
+          },
+          "description": "No more nail holes, cracked plaster or sticky residue. Command&trade; picture hanging strips make decorating quick and easy. One click tells you picture hanging strips are locked in and holding tight. Best of all, when you are ready to take down or move your pictures, they come off cleanly-no nail holes, cracked plaster or sticky residue.",
+          "handle": "command-17207-picture-hanging-strip-3-lbset-weight-capacity-foam-9996",
+          "title": "Command 17207 Picture Hanging Strip, 3 lb/set Weight Capacity, Foam",
+          "createdAt": "2025-12-11T12:04:53.888Z",
+          "strictImap": false,
+          "options": [],
+          "id": "prod_01K06D4MKFCRMNB0MMCJKA6FXB",
+          "categories": [],
+          "displayId": 9996,
+          "productUrl": "https://farmstore-modern.us/product/miscellaneous/command-17207-picture-hanging-strip-3-lbset-weight-capacity-foam-9996",
+          "items": [],
+          "brand": {
+            "image": {},
+            "name": "Command",
+            "id": 621
+          },
+          "prop65Warning": null
+        },
+        "productId": "prod_01K06D4MKFCRMNB0MMCJKA6FXB",
+        "length": 0.63,
+        "weight": 0.03,
+        "title": "Command 17207 Picture Hanging Strip, 3 lb/set Weight Capacity, Foam - ",
+        "width": 3.88,
+        "options": [],
+        "id": "variant_01KEGBPYQPFP55KNTX77DZSW60",
+        "variantId": "variant_01KEGBPYQPFP55KNTX77DZSW60",
+        "sku": "5130318",
+        "prices": [],
+        "height": 6.75
+      },
+      "id": "item_01KQ7H2RGY13A3SPCSVMA7AABC",
+      "variantId": "variant_01KEGBPYQPFP55KNTX77DZSW60",
+      "title": "Command 17207 Picture Hanging Strip, 3 lb/set Weight Capacity, Foam"
+    }
+  ],
+  "customer": null
+}
