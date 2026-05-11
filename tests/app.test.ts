@@ -16,6 +16,10 @@ describe('Wilco mock service', () => {
 
     expect(response.body.routes).toEqual(
       expect.arrayContaining([
+        expect.objectContaining({ path: '/avalara/api/v2/transactions/create' }),
+        expect.objectContaining({ path: '/authnet/xml/v1/request.api' }),
+        expect.objectContaining({ path: '/ups/security/v1/oauth/token' }),
+        expect.objectContaining({ path: '/kount/v1/token' }),
         expect.objectContaining({ path: '/commerce/addShippingMethod' }),
         expect.objectContaining({ path: '/commerce/validateBillingAddress' }),
         expect.objectContaining({ path: '/commerce/selectPaymentSession' }),
@@ -69,6 +73,34 @@ describe('Wilco mock service', () => {
     expect(response.body.exact[0].city).toBe('San Jose');
     expect(response.body.exact[0].address1).toBe('3031 Tisch Way #31');
     expect(response.body.exact[0].zip).toBe('95128-2541');
+  });
+
+  it('returns CONFIRM_ADD_SUBPREMISES when address2 repeats address1', async () => {
+    const response = await request(app)
+      .post('/commerce/validateBillingAddress')
+      .send([
+        {
+          ecomAddress: {
+            address1: '3031 tisch way',
+            address2: '3031 tisch way',
+            city: 'San Jose',
+            state: 'CA',
+            zip: '95128',
+            firstName: 'Aamir Bohra',
+            lastName: 'Bohra',
+            phone: '(877) 888-8888',
+            id: null,
+            shippingNote: null,
+          },
+        },
+      ])
+      .expect(200);
+
+    expect(response.body.possibleNextAction).toBe('CONFIRM_ADD_SUBPREMISES');
+    expect(response.body.exact[0].address1).toBe('3031 Tisch Way');
+    expect(response.body.exact[0].address2).toBe('3031 tisch way');
+    expect(response.body.exact[0].id).toBeNull();
+    expect(response.body.exact[0].shippingNote).toBeNull();
   });
 
   it('returns the captured selectPaymentSession cart fixture', async () => {
@@ -280,6 +312,40 @@ describe('Wilco mock service', () => {
     expect(validation.body.XAVResponse.Candidate[0].AddressKeyFormat.CountryCode).toBe(
       'US',
     );
+  });
+
+  it('serves UPS and Kount mocks under /ups and /kount path prefixes', async () => {
+    const upsToken = await request(app)
+      .post('/ups/security/v1/oauth/token')
+      .type('form')
+      .send({ grant_type: 'client_credentials' })
+      .expect(200);
+    expect(upsToken.body.access_token).toBe('mock-ups-access-token');
+
+    const kountOrder = await request(app).post('/kount/commerce/v2/orders').send({}).expect(200);
+    expect(kountOrder.body.data.order.riskInquiry.decision).toBe('APPROVE');
+  });
+
+  it('returns mock Avatax and Authorize.Net responses under /avalara and /authnet', async () => {
+    const tax = await request(app).post('/avalara/api/v2/transactions/create').send({}).expect(200);
+    expect(tax.body.totalTax).toBe(4.86);
+    expect(tax.body.status).toBe('Saved');
+
+    const taxScoped = await request(app)
+      .post('/avalara/api/v2/companies/12345/transactions/create')
+      .send({})
+      .expect(200);
+    expect(taxScoped.body.totalTaxCalculated).toBe(4.86);
+
+    const authXml = await request(app).post('/authnet/xml/v1/request.api').send({}).expect(200);
+    expect(authXml.body.transactionResponse.responseCode).toBe('1');
+    expect(authXml.body.transactionResponse.authorization).toBe('MDQJE3');
+    expect(authXml.body.transactionResponse.transactionId).toBe('60123456789');
+    expect(authXml.body.transactionResponse.billTo.country).toBe('US');
+
+    const authRest = await request(app).post('/authnet/rest/v1/transactions').send({}).expect(200);
+    expect(authRest.body.transactionResponse.transId).toBe('60123456789');
+    expect(authRest.body.transactionResponse.totalAmount).toBe('24.99');
   });
 
   it('returns mock provider responses for simple env-driven services', async () => {
