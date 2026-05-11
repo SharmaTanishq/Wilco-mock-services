@@ -36,6 +36,20 @@ kountRouter.post('/commerce/v2/orders', (req, res) => {
         },
       },
     },
+    data: {
+      order: {
+        riskInquiry: {
+          decision,
+          score: omniscore,
+          segmentExecuted: {
+            policiesExecuted: [{ name: policy }],
+          },
+          warnings: [],
+          rulesTriggered: [],
+          transactionId: `mock-kount-${decision.toLowerCase()}`,
+        },
+      },
+    },
   });
 });
 

@@ -36,7 +36,49 @@ upsRouter.post('/api/rating/:version/Rate', (_req, res) => {
   });
 });
 
-upsRouter.post('/api/addressvalidation/v2/3', (req, res) => {
+function sendAddressValidationResponse(req: { body?: any; query?: any }, res: { json: (b: unknown) => void }) {
+  const scenario = String(req.query?.scenario ?? '').toLowerCase();
+  if (scenario === 'inexact') {
+    return res.json({
+      XAVResponse: {
+        Response: { ResponseStatus: { Code: '1', Description: 'Success' } },
+        AmbiguousAddressIndicator: 'Y',
+        Candidate: [
+          {
+            AddressClassification: { Code: '1', Description: 'Commercial' },
+            AddressKeyFormat: {
+              AddressLine: ['123 MAIN ST'],
+              PoliticalDivision2: 'MCMINNVILLE',
+              PoliticalDivision1: 'OR',
+              PostcodePrimaryLow: '97128',
+              PostcodeExtendedLow: '1234',
+              CountryCode: 'US',
+            },
+          },
+          {
+            AddressClassification: { Code: '2', Description: 'Residential' },
+            AddressKeyFormat: {
+              AddressLine: ['123 MAIN STREET'],
+              PoliticalDivision2: 'MCMINNVILLE',
+              PoliticalDivision1: 'OR',
+              PostcodePrimaryLow: '97128',
+              PostcodeExtendedLow: '1234',
+              CountryCode: 'US',
+            },
+          },
+        ],
+      },
+    });
+  }
+  if (scenario === 'fix' || scenario === 'nocandidates') {
+    return res.json({
+      XAVResponse: {
+        Response: { ResponseStatus: { Code: '1', Description: 'Success' } },
+        NoCandidatesIndicator: 'Y',
+      },
+    });
+  }
+
   const postcode = String(
     req.body?.XAVRequest?.AddressKeyFormat?.PostcodePrimaryLow ?? '',
   );
@@ -111,6 +153,13 @@ upsRouter.post('/api/addressvalidation/v2/3', (req, res) => {
       ValidAddressIndicator: 'Y',
     },
   });
+}
+
+upsRouter.post('/api/addressvalidation/v2/3', (req, res) => {
+  sendAddressValidationResponse(req, res);
+});
+upsRouter.post('/api/addressvalidation/:version/:requestOption', (req, res) => {
+  sendAddressValidationResponse(req, res);
 });
 
 upsRouter.post('/api/shipments/:version/ship', (_req, res) => {
@@ -149,6 +198,11 @@ upsRouter.delete('/api/shipments/:version/void/cancel', (_req, res) => {
     'POST',
     '/api/addressvalidation/v2/3',
     'Returns mock UPS XAV response chosen by PostcodePrimaryLow suffix.',
+  ],
+  [
+    'POST',
+    '/api/addressvalidation/:version/:requestOption',
+    'Legacy UPS address validation route compatible with existing callers.',
   ],
   ['POST', '/api/shipments/:version/ship', 'Returns a mock UPS shipment.'],
   [
