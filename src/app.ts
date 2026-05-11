@@ -2,6 +2,8 @@ import cors from 'cors';
 import express, { type ErrorRequestHandler } from 'express';
 import helmet from 'helmet';
 import { commerceRouter } from './routes/commerce';
+import { avalaraRouter } from './routes/third-party/avalara';
+import { authorizeNetRouter } from './routes/third-party/authorize-net';
 import { integratorRouter } from './routes/third-party/integrator';
 import { kountRouter } from './routes/third-party/kount';
 import { translateRouter } from './routes/third-party/translate';
@@ -27,6 +29,11 @@ export function createApp() {
   });
 
   app.use('/commerce', commerceRouter);
+  /** Path-prefixed mounts for env bases like `.../ups`, `.../kount`, `.../avalara`, `.../authnet`. */
+  app.use('/ups', upsRouter);
+  app.use('/kount', kountRouter);
+  app.use('/avalara', avalaraRouter);
+  app.use('/authnet', authorizeNetRouter);
   app.use(upsRouter);
   app.use(googleAddressValidationRouter);
   app.use(translateRouter);

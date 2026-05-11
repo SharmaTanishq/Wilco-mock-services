@@ -142,6 +142,11 @@ upsRouter.delete('/api/shipments/:version/void/cancel', (_req, res) => {
     '/api/shipments/:version/void/cancel',
     'Returns a mock UPS shipment cancellation acknowledgement.',
   ],
-].forEach(([method, path, description]) =>
-  registerRoute({ method, path, description }),
-);
+].forEach(([method, path, description]) => {
+  registerRoute({ method, path, description });
+  registerRoute({
+    method,
+    path: `/ups${path}`,
+    description: `${description} (when UPS_ENDPOINT base ends with /ups).`,
+  });
+});

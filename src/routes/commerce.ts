@@ -452,14 +452,30 @@ commerceRouter.post('/getAcceptPaymentPage', (req, res) => {
 commerceRouter.post('/validateBillingAddress', (req, res) => {
   const payload = Array.isArray(req.body) ? req.body[0] : req.body;
   const inputAddress = (payload?.ecomAddress ?? {}) as MockRecord;
+  const toTitleCase = (value: string) =>
+    value
+      .toLowerCase()
+      .replace(/\b([a-z])/g, (match) => match.toUpperCase());
   const address1 = String(inputAddress.address1 ?? '');
   const address2 = String(inputAddress.address2 ?? '');
   const city = String(inputAddress.city ?? '');
   const state = String(inputAddress.state ?? '');
   const zip = String(inputAddress.zip ?? '');
   const normalizedZip = zip === '95128' ? '95128-2541' : zip;
+  const normalizedAddress1Base = toTitleCase(address1);
   const normalizedAddress1 =
-    address1 && address2 ? `${address1} #${address2}` : address1;
+    address1 && address2 && address1.trim().toLowerCase() !== address2.trim().toLowerCase()
+      ? `${normalizedAddress1Base} #${address2}`
+      : normalizedAddress1Base;
+  const hasDuplicateSubpremise =
+    Boolean(address1) &&
+    Boolean(address2) &&
+    address1.trim().toLowerCase() === address2.trim().toLowerCase();
+  const shippingNote = inputAddress.shippingNote ?? null;
+  const responseId =
+    hasDuplicateSubpremise
+      ? '5733dac1-b277-4872-a6fb-f4944a921977'
+      : '315ab9fe-7814-470d-aca6-cbdf6c31f915';
 
   return res.json({
     exact: [
@@ -469,20 +485,20 @@ commerceRouter.post('/validateBillingAddress', (req, res) => {
         city,
         state,
         zip: normalizedZip,
-        id: String(inputAddress.id ?? 'addr_01KK98XPTK4QNW4385Y1NEK223'),
+        id: inputAddress.id ?? null,
         firstName: String(inputAddress.firstName ?? 'Aamir'),
         lastName: String(inputAddress.lastName ?? 'Bohra'),
         country: 'US',
         phone: String(inputAddress.phone ?? '(065) 555-5555'),
-        shippingNote: String(inputAddress.shippingNote ?? ''),
+        shippingNote,
         preferred: Boolean(inputAddress.preferred ?? false),
         validated: true,
       },
     ],
     inexact: null,
-    possibleNextAction: 'ACCEPT',
+    possibleNextAction: hasDuplicateSubpremise ? 'CONFIRM_ADD_SUBPREMISES' : 'ACCEPT',
     unconfirmedComponentTypes: ['subpremise'],
-    responseId: '315ab9fe-7814-470d-aca6-cbdf6c31f915',
+    responseId,
   });
 });
 

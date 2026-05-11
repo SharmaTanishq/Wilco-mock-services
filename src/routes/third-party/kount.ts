@@ -28,14 +28,22 @@ kountRouter.post('/commerce/v2/orders', (_req, res) => {
   });
 });
 
-registerRoute({
-  method: 'POST',
-  path: '/v1/token',
-  description: 'Returns a mock Kount bearer token.',
-});
-
-registerRoute({
-  method: 'POST',
-  path: '/commerce/v2/orders',
-  description: 'Returns a mock Kount risk inquiry approval.',
+[
+  {
+    method: 'POST',
+    path: '/v1/token',
+    description: 'Returns a mock Kount bearer token.',
+  },
+  {
+    method: 'POST',
+    path: '/commerce/v2/orders',
+    description: 'Returns a mock Kount risk inquiry approval.',
+  },
+].forEach((route) => {
+  registerRoute(route);
+  registerRoute({
+    ...route,
+    path: `/kount${route.path}`,
+    description: `${route.description} (when KOUNT_API_URL base ends with /kount).`,
+  });
 });
