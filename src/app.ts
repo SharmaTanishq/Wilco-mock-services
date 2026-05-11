@@ -28,6 +28,35 @@ export function createApp() {
     res.json({ routes: getRegisteredRoutes() });
   });
 
+  app.get('/ups', (_req, res) => {
+    res.json({
+      provider: 'ups',
+      status: 'ok',
+      message: 'Use /ups/* UPS mock routes.',
+    });
+  });
+  app.get('/kount', (_req, res) => {
+    res.json({
+      provider: 'kount',
+      status: 'ok',
+      message: 'Use /kount/* Kount mock routes.',
+    });
+  });
+  app.get('/avalara', (_req, res) => {
+    res.json({
+      provider: 'avalara',
+      status: 'ok',
+      message: 'Use /avalara/* Avatax mock routes.',
+    });
+  });
+  app.get('/authnet', (_req, res) => {
+    res.json({
+      provider: 'authnet',
+      status: 'ok',
+      message: 'Use /authnet/* Authorize.Net mock routes.',
+    });
+  });
+
   app.use('/commerce', commerceRouter);
   /** Path-prefixed mounts for env bases like `.../ups`, `.../kount`, `.../avalara`, `.../authnet`. */
   app.use('/ups', upsRouter);

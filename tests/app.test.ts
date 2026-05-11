@@ -11,6 +11,39 @@ describe('Wilco mock service', () => {
     expect(response.body).toEqual({ status: 'ok' });
   });
 
+  it('reports UPS base path health', async () => {
+    const response = await request(app).get('/ups').expect(200);
+
+    expect(response.body).toEqual({
+      provider: 'ups',
+      status: 'ok',
+      message: 'Use /ups/* UPS mock routes.',
+    });
+  });
+
+  it('reports Kount, Avalara, and Authorize.Net base path health', async () => {
+    const kount = await request(app).get('/kount').expect(200);
+    expect(kount.body).toEqual({
+      provider: 'kount',
+      status: 'ok',
+      message: 'Use /kount/* Kount mock routes.',
+    });
+
+    const avalara = await request(app).get('/avalara').expect(200);
+    expect(avalara.body).toEqual({
+      provider: 'avalara',
+      status: 'ok',
+      message: 'Use /avalara/* Avatax mock routes.',
+    });
+
+    const authnet = await request(app).get('/authnet').expect(200);
+    expect(authnet.body).toEqual({
+      provider: 'authnet',
+      status: 'ok',
+      message: 'Use /authnet/* Authorize.Net mock routes.',
+    });
+  });
+
   it('lists registered mock routes', async () => {
     const response = await request(app).get('/__mock/routes').expect(200);
 
