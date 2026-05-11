@@ -49,8 +49,9 @@ describe('Wilco mock service', () => {
 
     expect(response.body.routes).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ path: '/avalara/api/v2/transactions/create' }),
+        expect.objectContaining({ path: '/avalara/transactions/create-or-adjust' }),
         expect.objectContaining({ path: '/authnet/xml/v1/request.api' }),
+        expect.objectContaining({ path: '/authnet/get-transaction-details' }),
         expect.objectContaining({ path: '/ups/security/v1/oauth/token' }),
         expect.objectContaining({ path: '/kount/v1/token' }),
         expect.objectContaining({ path: '/commerce/addShippingMethod' }),
@@ -335,16 +336,15 @@ describe('Wilco mock service', () => {
       .send({ grant_type: 'client_credentials' })
       .expect(200);
 
-    expect(token.body.access_token).toBe('mock-ups-access-token');
+    expect(token.body.access_token).toBe('mock_ups_access_token');
 
     const validation = await request(app)
-      .post('/api/addressvalidation/v2/3?scenario=inexact')
-      .send({})
+      .post('/api/addressvalidation/v2/3')
+      .send({ XAVRequest: { AddressKeyFormat: { PostcodePrimaryLow: '97122' } } })
       .expect(200);
 
-    expect(validation.body.XAVResponse.Candidate[0].AddressKeyFormat.CountryCode).toBe(
-      'US',
-    );
+    expect(validation.body.XAVResponse.AmbiguousAddressIndicator).toBe('Y');
+    expect(validation.body.XAVResponse.Candidate[0].AddressKeyFormat.CountryCode).toBe('US');
   });
 
   it('serves UPS and Kount mocks under /ups and /kount path prefixes', async () => {
@@ -353,22 +353,22 @@ describe('Wilco mock service', () => {
       .type('form')
       .send({ grant_type: 'client_credentials' })
       .expect(200);
-    expect(upsToken.body.access_token).toBe('mock-ups-access-token');
+    expect(upsToken.body.access_token).toBe('mock_ups_access_token');
 
-    const kountOrder = await request(app).post('/kount/commerce/v2/orders').send({}).expect(200);
-    expect(kountOrder.body.data.order.riskInquiry.decision).toBe('APPROVE');
+    const kountOrder = await request(app)
+      .post('/kount/commerce/v2/orders?riskInquiry=true')
+      .send({ merchantOrderId: 'ORDER123A' })
+      .expect(200);
+    expect(kountOrder.body.order.riskInquiry.decision).toBe('APPROVE');
   });
 
   it('returns mock Avatax and Authorize.Net responses under /avalara and /authnet', async () => {
-    const tax = await request(app).post('/avalara/api/v2/transactions/create').send({}).expect(200);
-    expect(tax.body.totalTax).toBe(4.86);
-    expect(tax.body.status).toBe('Saved');
-
-    const taxScoped = await request(app)
-      .post('/avalara/api/v2/companies/12345/transactions/create')
+    const tax = await request(app)
+      .post('/avalara/transactions/create-or-adjust')
       .send({})
       .expect(200);
-    expect(taxScoped.body.totalTaxCalculated).toBe(4.86);
+    expect(tax.body.summary[0].taxCalculated).toBe(1.87);
+    expect(tax.body.summary[1].taxCalculated).toBe(0.43);
 
     const authXml = await request(app).post('/authnet/xml/v1/request.api').send({}).expect(200);
     expect(authXml.body.transactionResponse.responseCode).toBe('1');
@@ -379,6 +379,9 @@ describe('Wilco mock service', () => {
     const authRest = await request(app).post('/authnet/rest/v1/transactions').send({}).expect(200);
     expect(authRest.body.transactionResponse.transId).toBe('60123456789');
     expect(authRest.body.transactionResponse.totalAmount).toBe('24.99');
+
+    const hostedPage = await request(app).post('/authnet/get-hosted-payment-page').send({}).expect(200);
+    expect(hostedPage.body.token).toBe('mock_accept_hosted_token_01');
   });
 
   it('returns mock provider responses for simple env-driven services', async () => {
@@ -387,7 +390,7 @@ describe('Wilco mock service', () => {
     const unbxd = await request(app).get('/autosuggest?q=dog').expect(200);
 
     expect(google.body.result.verdict.possibleNextAction).toBe('ACCEPT');
-    expect(kount.body.data.order.riskInquiry.decision).toBe('APPROVE');
+    expect(kount.body.order.riskInquiry.decision).toBe('APPROVE');
     expect(unbxd.body.response.products[0].sku).toBe('1038510');
   });
 });

@@ -5,23 +5,34 @@ export const kountRouter = Router();
 
 kountRouter.post('/v1/token', (_req, res) => {
   res.json({
-    access_token: 'mock-kount-access-token',
+    access_token: 'mock_kount_access_token',
     token_type: 'Bearer',
     expires_in: 3600,
-    scope: 'k1_integration_api',
   });
 });
 
-kountRouter.post('/commerce/v2/orders', (_req, res) => {
+kountRouter.post('/commerce/v2/orders', (req, res) => {
+  const merchantOrderId = String(
+    req.body?.merchantOrderId ?? req.body?.order?.merchantOrderId ?? '',
+  );
+  const suffix = merchantOrderId.slice(-1).toUpperCase();
+  const decision =
+    suffix === 'R' ? 'REVIEW' : suffix === 'D' ? 'DECLINE' : 'APPROVE';
+  const omniscore = decision === 'APPROVE' ? 12 : decision === 'REVIEW' ? 64 : 95;
+  const policy =
+    decision === 'APPROVE'
+      ? 'Mock policy approve'
+      : decision === 'REVIEW'
+        ? 'Mock policy review'
+        : 'Mock policy decline';
+
   res.json({
-    data: {
-      order: {
-        riskInquiry: {
-          decision: 'APPROVE',
-          score: 12,
-          transactionId: 'mock-kount-transaction',
-          warnings: [],
-          rulesTriggered: [],
+    order: {
+      riskInquiry: {
+        decision,
+        omniscore,
+        segmentExecuted: {
+          policiesExecuted: [{ name: policy }],
         },
       },
     },
@@ -37,7 +48,7 @@ kountRouter.post('/commerce/v2/orders', (_req, res) => {
   {
     method: 'POST',
     path: '/commerce/v2/orders',
-    description: 'Returns a mock Kount risk inquiry approval.',
+    description: 'Returns mock Kount risk inquiry decision by merchantOrderId suffix.',
   },
 ].forEach((route) => {
   registerRoute(route);

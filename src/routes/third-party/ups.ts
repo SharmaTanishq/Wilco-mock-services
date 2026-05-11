@@ -5,12 +5,9 @@ export const upsRouter = Router();
 
 upsRouter.post('/security/v1/oauth/token', (_req, res) => {
   res.json({
+    access_token: 'mock_ups_access_token',
     token_type: 'Bearer',
-    issued_at: String(Date.now()),
-    client_id: 'wilco-mock-client',
-    access_token: 'mock-ups-access-token',
     expires_in: 3600,
-    status: 'approved',
   });
 });
 
@@ -39,10 +36,13 @@ upsRouter.post('/api/rating/:version/Rate', (_req, res) => {
   });
 });
 
-upsRouter.post('/api/addressvalidation/:version/:requestOption', (req, res) => {
-  const scenario = String(req.query.scenario ?? 'exact');
+upsRouter.post('/api/addressvalidation/v2/3', (req, res) => {
+  const postcode = String(
+    req.body?.XAVRequest?.AddressKeyFormat?.PostcodePrimaryLow ?? '',
+  );
+  const suffix = postcode.slice(-2);
 
-  if (scenario === 'fix') {
+  if (suffix === '33') {
     return res.json({
       XAVResponse: {
         Response: {
@@ -51,12 +51,12 @@ upsRouter.post('/api/addressvalidation/:version/:requestOption', (req, res) => {
             Description: 'Success',
           },
         },
-        NoCandidatesIndicator: '',
+        NoCandidatesIndicator: 'Y',
       },
     });
   }
 
-  if (scenario === 'inexact') {
+  if (suffix === '22') {
     return res.json({
       XAVResponse: {
         Response: {
@@ -65,19 +65,33 @@ upsRouter.post('/api/addressvalidation/:version/:requestOption', (req, res) => {
             Description: 'Success',
           },
         },
-        AmbiguousAddressIndicator: '',
+        AmbiguousAddressIndicator: 'Y',
         Candidate: [
+          {
+            AddressClassification: {
+              Code: '1',
+              Description: 'Commercial',
+            },
+            AddressKeyFormat: {
+              AddressLine: ['123 MAIN ST'],
+              PoliticalDivision2: 'MCMINNVILLE',
+              PoliticalDivision1: 'OR',
+              PostcodePrimaryLow: '97128',
+              PostcodeExtendedLow: '1234',
+              CountryCode: 'US',
+            },
+          },
           {
             AddressClassification: {
               Code: '2',
               Description: 'Residential',
             },
             AddressKeyFormat: {
-              AddressLine: ['625 C St', '#4'],
-              PoliticalDivision2: 'Oregon City',
+              AddressLine: ['123 MAIN STREET'],
+              PoliticalDivision2: 'MCMINNVILLE',
               PoliticalDivision1: 'OR',
-              PostcodePrimaryLow: '97045',
-              PostcodeExtendedLow: '2210',
+              PostcodePrimaryLow: '97128',
+              PostcodeExtendedLow: '1234',
               CountryCode: 'US',
             },
           },
@@ -94,7 +108,7 @@ upsRouter.post('/api/addressvalidation/:version/:requestOption', (req, res) => {
           Description: 'Success',
         },
       },
-      ValidAddressIndicator: '',
+      ValidAddressIndicator: 'Y',
     },
   });
 });
@@ -133,8 +147,8 @@ upsRouter.delete('/api/shipments/:version/void/cancel', (_req, res) => {
   ['POST', '/api/rating/:version/Rate', 'Returns a mock UPS Ground rate.'],
   [
     'POST',
-    '/api/addressvalidation/:version/:requestOption',
-    'Returns mock UPS XAV exact, inexact, or fix responses.',
+    '/api/addressvalidation/v2/3',
+    'Returns mock UPS XAV response chosen by PostcodePrimaryLow suffix.',
   ],
   ['POST', '/api/shipments/:version/ship', 'Returns a mock UPS shipment.'],
   [

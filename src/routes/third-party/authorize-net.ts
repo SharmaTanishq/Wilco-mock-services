@@ -64,6 +64,80 @@ authorizeNetRouter.post('/rest/v1/transactions', (_req, res) => {
   sendApprovedTransaction(_req, res);
 });
 
+authorizeNetRouter.post('/get-hosted-payment-page', (_req, res) => {
+  res.json({
+    token: 'mock_accept_hosted_token_01',
+  });
+});
+
+authorizeNetRouter.post('/create-customer-profile', (_req, res) => {
+  res.json({
+    customerProfileId: '1900012345',
+  });
+});
+
+authorizeNetRouter.post('/get-customer-payment-profile', (_req, res) => {
+  res.json({
+    profile: {
+      customerProfileId: '1900012345',
+      paymentProfiles: [
+        {
+          customerPaymentProfileId: '2900098765',
+          payment: {
+            creditCard: {
+              cardNumber: 'XXXX1111',
+              expirationDate: 'XXXX',
+            },
+          },
+        },
+      ],
+    },
+  });
+});
+
+authorizeNetRouter.post('/get-transaction-details', (_req, res) => {
+  res.json({
+    transactionId: '60123456789',
+    status: 'capturedPendingSettlement',
+    authAmount: 45.67,
+    settleAmount: 45.67,
+    responseCode: 1,
+    cartId: 'cart_01JXYZ',
+    payment: {
+      creditCard: {
+        cardNumber: 'XXXX1111',
+        expirationDate: 'XXXX',
+        cardType: 'visa',
+      },
+    },
+    refunds: [],
+  });
+});
+
+authorizeNetRouter.post('/capture', (_req, res) => {
+  res.json({
+    success: true,
+    transactionId: '60123456789',
+    status: 'capturedPendingSettlement',
+  });
+});
+
+authorizeNetRouter.post('/refund', (_req, res) => {
+  res.json({
+    success: true,
+    refundTransactionId: '70123456789',
+    status: 'refunded',
+  });
+});
+
+authorizeNetRouter.post('/void', (_req, res) => {
+  res.json({
+    success: true,
+    transactionId: '60123456789',
+    status: 'voided',
+  });
+});
+
 [
   [
     'POST',
@@ -75,4 +149,23 @@ authorizeNetRouter.post('/rest/v1/transactions', (_req, res) => {
     '/authnet/rest/v1/transactions',
     'Same mock approved response for REST-style Authorize.Net posts.',
   ],
+  [
+    'POST',
+    '/authnet/get-hosted-payment-page',
+    'Returns mock Authorize.Net hosted payment token.',
+  ],
+  ['POST', '/authnet/create-customer-profile', 'Returns mock customer profile ID.'],
+  [
+    'POST',
+    '/authnet/get-customer-payment-profile',
+    'Returns mock customer payment profile details.',
+  ],
+  [
+    'POST',
+    '/authnet/get-transaction-details',
+    'Returns mock Authorize.Net transaction details.',
+  ],
+  ['POST', '/authnet/capture', 'Returns mock successful capture response.'],
+  ['POST', '/authnet/refund', 'Returns mock successful refund response.'],
+  ['POST', '/authnet/void', 'Returns mock successful void response.'],
 ].forEach(([method, path, description]) => registerRoute({ method, path, description }));

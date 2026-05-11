@@ -3,60 +3,43 @@ import { registerRoute } from '../../mock-registry';
 
 export const avalaraRouter = Router();
 
-function sendMockCreateTransaction(res: { json: (b: unknown) => void }) {
-  res.json({
-    id: 0,
-    code: 'MOCK_INVOICE',
-    companyId: 0,
-    date: new Date().toISOString().slice(0, 10),
-    paymentDate: new Date().toISOString().slice(0, 10),
-    status: 'Saved',
-    type: 'SalesOrder',
-    batchCode: '',
-    currencyCode: 'USD',
-    exchangeRateCurrencyCode: 'USD',
-    customerUsageType: '',
-    entityUseCode: '',
-    totalAmount: 100,
-    totalExempt: 0,
-    totalDiscount: 0,
-    totalTax: 4.86,
-    totalTaxable: 95.14,
-    totalTaxCalculated: 4.86,
-    lines: [],
-    addresses: [],
+avalaraRouter.post('/transactions/create-or-adjust', (req, res) => {
+  const lines = Array.isArray(req.body?.lines) ? req.body.lines : [];
+  const nonTaxable = lines.length > 0 && lines.every((line: { taxCode?: unknown }) => line?.taxCode === 'NT');
+
+  if (nonTaxable) {
+    return res.json({
+      id: 1000002,
+      code: 'mock-cart-code-nt',
+      summary: [
+        {
+          jurisdictionType: 'STATE',
+          taxCalculated: 0,
+        },
+      ],
+    });
+  }
+
+  return res.json({
+    id: 1000001,
+    code: 'mock-cart-code',
     summary: [
       {
-        jurisType: 'State',
-        jurisName: 'OREGON',
-        taxType: 'Sales',
-        tax: 0,
-        rate: 0,
-        taxCalculated: 0,
+        jurisdictionType: 'STATE',
+        taxCalculated: 1.87,
+      },
+      {
+        jurisdictionType: 'COUNTY',
+        taxCalculated: 0.43,
       },
     ],
   });
-}
-
-/** Minimal CreateTransaction-style success used when middleware calls Avatax REST. */
-avalaraRouter.post('/api/v2/transactions/create', (_req, res) => {
-  sendMockCreateTransaction(res);
-});
-
-/** Company-scoped create URL used by some Avatax clients. */
-avalaraRouter.post('/api/v2/companies/:companyId/transactions/create', (_req, res) => {
-  sendMockCreateTransaction(res);
 });
 
 [
   [
     'POST',
-    '/avalara/api/v2/transactions/create',
-    'Returns a mock Avatax create-transaction payload (AVATAX_BASE_URL ending with /avalara).',
-  ],
-  [
-    'POST',
-    '/avalara/api/v2/companies/:companyId/transactions/create',
-    'Same mock create-transaction payload for company-scoped Avatax URL.',
+    '/avalara/transactions/create-or-adjust',
+    'Returns mock Avatax summary tax payload; supports non-taxable NT scenario.',
   ],
 ].forEach(([method, path, description]) => registerRoute({ method, path, description }));
