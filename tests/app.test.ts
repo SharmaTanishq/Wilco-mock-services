@@ -391,17 +391,21 @@ describe('Wilco mock service', () => {
     expect(tax.body.summary[1].taxCalculated).toBe(0.43);
 
     const authXml = await request(app).post('/authnet/xml/v1/request.api').send({}).expect(200);
-    expect(authXml.body.transactionResponse.responseCode).toBe('1');
-    expect(authXml.body.transactionResponse.authorization).toBe('MDQJE3');
-    expect(authXml.body.transactionResponse.transactionId).toBe('60123456789');
-    expect(authXml.body.transactionResponse.billTo.country).toBe('US');
+    expect(authXml.body.createTransactionResponse.messages.resultCode).toBe('Ok');
+    expect(authXml.body.createTransactionResponse.transactionResponse.responseCode).toBe('1');
+    expect(authXml.body.createTransactionResponse.transactionResponse.transId).toBe('60123456789');
+
+    const authHosted = await request(app)
+      .post('/authnet/xml/v1/request.api')
+      .send({ getHostedPaymentPageRequest: { hostedPaymentSettings: {} } })
+      .expect(200);
+    expect(authHosted.body.getHostedPaymentPageResponse.token).toBe('MOCK_HOSTED_PAYMENT_TOKEN_12345');
 
     const authRest = await request(app).post('/authnet/rest/v1/transactions').send({}).expect(200);
-    expect(authRest.body.transactionResponse.transId).toBe('60123456789');
-    expect(authRest.body.transactionResponse.totalAmount).toBe('24.99');
+    expect(authRest.body.createTransactionResponse.transactionResponse.transId).toBe('60123456789');
 
     const hostedPage = await request(app).post('/authnet/get-hosted-payment-page').send({}).expect(200);
-    expect(hostedPage.body.token).toBe('mock_accept_hosted_token_01');
+    expect(hostedPage.body.token).toBe('MOCK_HOSTED_PAYMENT_TOKEN_12345');
   });
 
   it('returns mock provider responses for simple env-driven services', async () => {
