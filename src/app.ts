@@ -5,7 +5,7 @@ import { commerceRouter } from './routes/commerce';
 import { avalaraRouter } from './routes/third-party/avalara';
 import { authorizeNetRouter } from './routes/third-party/authorize-net';
 import { integratorRouter } from './routes/third-party/integrator';
-import { kountRouter } from './routes/third-party/kount';
+import { kountOAuthRouter, kountRouter } from './routes/third-party/kount';
 import { translateRouter } from './routes/third-party/translate';
 import { unbxdRouter } from './routes/third-party/unbxd';
 import { upsRouter } from './routes/third-party/ups';
@@ -50,6 +50,13 @@ export function createApp() {
       message: 'Use /kount/* Kount mock routes.',
     });
   });
+  app.get('/kount-oauth', (_req, res) => {
+    res.json({
+      provider: 'kount-oauth',
+      status: 'ok',
+      message: 'OmniAPI KOUNT_ISSUER base — POST /v1/token only.',
+    });
+  });
   app.get('/avalara', (_req, res) => {
     res.json({
       provider: 'avalara',
@@ -69,6 +76,7 @@ export function createApp() {
   /** Path-prefixed mounts for env bases like `.../ups`, `.../kount`, `.../avalara`, `.../authnet`. */
   app.use('/ups', upsRouter);
   app.use('/kount', kountRouter);
+  app.use('/kount-oauth', kountOAuthRouter);
   app.use('/avalara', avalaraRouter);
   app.use('/authnet', authorizeNetRouter);
   app.use(upsRouter);

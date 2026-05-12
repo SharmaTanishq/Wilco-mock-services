@@ -54,6 +54,7 @@ describe('Wilco mock service', () => {
         expect.objectContaining({ path: '/authnet/get-transaction-details' }),
         expect.objectContaining({ path: '/ups/security/v1/oauth/token' }),
         expect.objectContaining({ path: '/kount/v1/token' }),
+        expect.objectContaining({ path: '/kount-oauth/v1/token' }),
         expect.objectContaining({ path: '/commerce/addShippingMethod' }),
         expect.objectContaining({ path: '/commerce/validateBillingAddress' }),
         expect.objectContaining({ path: '/commerce/selectPaymentSession' }),
@@ -360,6 +361,25 @@ describe('Wilco mock service', () => {
       .send({ merchantOrderId: 'ORDER123A' })
       .expect(200);
     expect(kountOrder.body.order.riskInquiry.decision).toBe('APPROVE');
+    expect(kountOrder.body.order.riskInquiry.omniscore).toBe(780);
+    expect(kountOrder.body.order.riskInquiry.segmentExecuted.policiesExecuted[0].name).toBe(
+      'mock-load-test-approve',
+    );
+
+    const kountToken = await request(app)
+      .post('/kount/v1/token')
+      .type('form')
+      .send({ grant_type: 'client_credentials', scope: 'k1_integration_api' })
+      .expect(200);
+    expect(kountToken.body.access_token).toBe('mock-kount-access-token');
+    expect(kountToken.body.expires_in).toBe(3600);
+
+    const issuerToken = await request(app)
+      .post('/kount-oauth/v1/token')
+      .type('form')
+      .send({ grant_type: 'client_credentials', scope: 'k1_integration_api' })
+      .expect(200);
+    expect(issuerToken.body).toEqual(kountToken.body);
   });
 
   it('returns mock Avatax and Authorize.Net responses under /avalara and /authnet', async () => {
