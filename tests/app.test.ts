@@ -1,10 +1,13 @@
 import request from 'supertest';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createApp } from '../src/app';
 
 const app = createApp();
 
 describe('Wilco mock service', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
   it('reports health', async () => {
     const response = await request(app).get('/health').expect(200);
 
@@ -416,5 +419,32 @@ describe('Wilco mock service', () => {
     expect(google.body.result.verdict.possibleNextAction).toBe('ACCEPT');
     expect(kount.body.order.riskInquiry.decision).toBe('APPROVE');
     expect(unbxd.body.response.products[0].sku).toBe('1038510');
+  });
+
+  it('returns full Unbxd commerce facets by default for path-shaped search', async () => {
+    const res = await request(app).get('/any-api-key/any-site-key/search?q=test').expect(200);
+    expect(res.headers['content-type']).toMatch(/application\/json/);
+    expect(Array.isArray(res.body.facets.text.list)).toBe(true);
+    expect(res.body.facets.text.list.length).toBeGreaterThan(0);
+  });
+
+  it('returns minimal commerce JSON when UNBXD_MINIMAL_COMMERCE_RESPONSE is enabled', async () => {
+    vi.stubEnv('UNBXD_MINIMAL_COMMERCE_RESPONSE', 'true');
+    const minimalApp = createApp();
+
+    const search = await request(minimalApp)
+      .get('/myApiKey/mySiteKey/search?q=ignored&rows=50')
+      .expect(200);
+    expect(search.body.facets.text.list).toEqual([]);
+    expect(search.body.facets.multilevel.list).toEqual([]);
+    expect(search.body.response.numberOfProducts).toBe(1);
+    expect(search.body.response.products).toHaveLength(1);
+    expect(search.body.response.products[0].variants).toHaveLength(1);
+    expect(search.body.response.products[0].uniqueId).toBe('loadtest-001');
+
+    const category = await request(minimalApp)
+      .get('/myApiKey/mySiteKey/category?p=ignored')
+      .expect(200);
+    expect(category.body.response.products[0].uniqueId).toBe('loadtest-001');
   });
 });

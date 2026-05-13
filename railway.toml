@@ -1,0 +1,10 @@
+# https://docs.railway.com/guides/config-as-code
+# No Dockerfile: Railway uses Railpack (default). TypeScript build deps live in
+# package.json "dependencies" so production installs can still run `npm run build`.
+
+[build]
+builder = "RAILPACK"
+
+[deploy]
+healthcheckPath = "/health"
+restartPolicyType = "ON_FAILURE"

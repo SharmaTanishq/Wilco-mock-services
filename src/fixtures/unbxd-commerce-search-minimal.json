@@ -1,0 +1,57 @@
+{
+  "response": {
+    "numberOfProducts": 1,
+    "products": [
+      {
+        "uniqueId": "loadtest-001",
+        "medusaId": "prod_loadtest_1",
+        "title": "Load Test Product",
+        "description": "Minimal canned Unbxd commerce response for load testing.",
+        "handle": "load-test-product",
+        "productUrl": "/product/load-test-product",
+        "imageUrl": ["https://example.com/images/load-test.jpg"],
+        "notSoldOnline": "false",
+        "hidePricingOnline": "false",
+        "strictImap": "false",
+        "isNew": "false",
+        "pickupOnly": "false",
+        "limitedStockQuantity": null,
+        "excludedStates": [],
+        "score": 100,
+        "brand": "MockBrand",
+        "categories": ["Load Test"],
+        "variants": [
+          {
+            "variantMedusaId": "var_loadtest_1",
+            "variantSku": "LOADTEST-SKU-1",
+            "isDiscontinued": "false",
+            "variantSalePrice": 9.99,
+            "variantRetailPrice": 12.99,
+            "lowestDisplayPrice": 9.99,
+            "weight": 1,
+            "width": 4,
+            "length": 4,
+            "height": 4,
+            "weightUnit": "lb",
+            "storeAvailability_1_unx_d": 10
+          }
+        ]
+      }
+    ]
+  },
+  "facets": {
+    "text": {
+      "list": []
+    },
+    "multilevel": {
+      "list": []
+    }
+  },
+  "searchMetaData": {
+    "queryTime": 1,
+    "totalTime": 2
+  },
+  "redirect": {
+    "value": null
+  }
+}

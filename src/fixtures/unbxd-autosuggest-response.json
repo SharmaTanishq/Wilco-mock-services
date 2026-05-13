@@ -1,0 +1,42 @@
+{
+  "response": {
+    "products": [
+      {
+        "doctype": "KEYWORD_SUGGESTION",
+        "autosuggest": "dog food",
+        "prank": 100,
+        "uniqueId": "s1"
+      },
+      {
+        "doctype": "KEYWORD_SUGGESTION",
+        "autosuggest": "dog food premium",
+        "prank": 95,
+        "uniqueId": "s2"
+      },
+      {
+        "doctype": "KEYWORD_SUGGESTION",
+        "autosuggest": "dog food chicken",
+        "prank": 90,
+        "uniqueId": "s3"
+      },
+      {
+        "doctype": "KEYWORD_SUGGESTION",
+        "autosuggest": "dog treats",
+        "prank": 85,
+        "uniqueId": "s4"
+      },
+      {
+        "doctype": "KEYWORD_SUGGESTION",
+        "autosuggest": "cat food",
+        "prank": 98,
+        "uniqueId": "s5"
+      },
+      {
+        "doctype": "KEYWORD_SUGGESTION",
+        "autosuggest": "cat food organic",
+        "prank": 92,
+        "uniqueId": "s6"
+      }
+    ]
+  }
+}
