@@ -438,9 +438,12 @@ describe('Wilco mock service', () => {
     expect(typeof brandFacet.values[1]).toBe('number');
     const catFacet = res.body.facets.multilevel.list[0];
     expect(catFacet.displayName).toBe('Category');
-    expect(catFacet.values[0].name).toBe('1068');
-    expect(res.body.response.numberOfProducts).toBe(26);
-    expect(res.body.response.products).toHaveLength(5);
+    const catNames = catFacet.values.map((v: { name: string }) => v.name);
+    expect(catNames).toContain('1068');
+    expect(catNames).toContain('174');
+    expect(catFacet.values.length).toBeGreaterThanOrEqual(6);
+    expect(res.body.response.numberOfProducts).toBe(102);
+    expect(res.body.response.products).toHaveLength(22);
   });
 
   it('returns minimal commerce JSON when UNBXD_MINIMAL_COMMERCE_RESPONSE is enabled', async () => {
@@ -483,6 +486,20 @@ describe('Wilco mock service', () => {
     expect(r.body.product.notSoldOnline).toBe(false);
     expect(r.body.product.pickupOnly).toBe(false);
     expect(r.body.product.excludedStates).toEqual(['CA']);
+  });
+
+  it('returns get-product for fencing hardware cloth (display id 9498)', async () => {
+    const r = await request(app).get('/store/get-product?id=9498').expect(200);
+    expect(r.body.product.id).toBe('prod_01K06D4K7N4C76TYRD2GJVA1T3');
+    expect(r.body.product.external_id).toBe('9498');
+    expect(r.body.product.title).toContain('Hardware Cloth');
+    expect(r.body.product.excludedStates).toEqual(['CA']);
+  });
+
+  it('maps pickupOnly from Unbxd hit (barbed wire)', async () => {
+    const r = await request(app).get('/store/get-product?id=9372').expect(200);
+    expect(r.body.product.pickupOnly).toBe(true);
+    expect(r.body.product.title).toContain('Barbed Wire');
   });
 
   it('returns 404 for unknown get-product id', async () => {
