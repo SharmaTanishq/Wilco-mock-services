@@ -4,7 +4,7 @@ import searchFixture from '../../fixtures/unbxd-search-response.json';
 import commerceMinimalFixture from '../../fixtures/unbxd-commerce-search-minimal.json';
 import autosuggestFixture from '../../fixtures/unbxd-autosuggest-response.json';
 
-/** Fixtures: productUrl/handle end with -<numeric uniqueId> for Nuxt PDP; Medusa must serve that id for PDP to resolve. */
+/** Unbxd: productUrl/handle end with -<numeric uniqueId> for Nuxt PDP. Text facets use flat values[]; multilevel Category uses numeric name ids. */
 export const unbxdRouter = Router();
 
 const commerceSearchFixture = () => {

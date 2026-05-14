@@ -41,10 +41,38 @@
   },
   "facets": {
     "text": {
-      "list": []
+      "list": [
+        {
+          "name": "brand",
+          "displayName": "Brands",
+          "values": ["MockBrand", 1]
+        },
+        {
+          "name": "price",
+          "displayName": "Price",
+          "values": [
+            "Under $24.99",
+            1,
+            "$25.00 to $49.99",
+            0,
+            "$50.00 to $99.99",
+            0,
+            "$100.00 to $199.99",
+            0,
+            "$200 and above",
+            0
+          ]
+        }
+      ]
     },
     "multilevel": {
-      "list": []
+      "list": [
+        {
+          "name": "categories",
+          "displayName": "Category",
+          "values": [{ "name": "1099", "count": 1, "displayName": "Load Test" }]
+        }
+      ]
     }
   },
   "searchMetaData": {

@@ -219,59 +219,34 @@
       "list": [
         {
           "name": "brand",
-          "displayName": "Brand",
+          "displayName": "Brands",
           "values": [
-            {
-              "name": "PetCare Pro",
-              "count": 12,
-              "displayName": "PetCare Pro"
-            },
-            {
-              "name": "Feline Natural",
-              "count": 8,
-              "displayName": "Feline Natural"
-            },
-            {
-              "name": "FeatheredFriends",
-              "count": 6,
-              "displayName": "FeatheredFriends"
-            },
-            {
-              "name": "AquaLife",
-              "count": 5,
-              "displayName": "AquaLife"
-            }
+            "PetCare Pro",
+            12,
+            "Feline Natural",
+            8,
+            "FeatheredFriends",
+            6,
+            "AquaLife",
+            5,
+            "BunnyNutrition",
+            4
           ]
         },
         {
           "name": "price",
           "displayName": "Price",
           "values": [
-            {
-              "name": "Under $24.99",
-              "count": 12,
-              "displayName": "Under $24.99"
-            },
-            {
-              "name": "$25.00 to $49.99",
-              "count": 10,
-              "displayName": "$25.00 to $49.99"
-            },
-            {
-              "name": "$50.00 to $99.99",
-              "count": 8,
-              "displayName": "$50.00 to $99.99"
-            },
-            {
-              "name": "$100.00 to $199.99",
-              "count": 5,
-              "displayName": "$100.00 to $199.99"
-            },
-            {
-              "name": "$200 and above",
-              "count": 3,
-              "displayName": "$200 and above"
-            }
+            "Under $24.99",
+            12,
+            "$25.00 to $49.99",
+            10,
+            "$50.00 to $99.99",
+            8,
+            "$100.00 to $199.99",
+            5,
+            "$200 and above",
+            3
           ]
         }
       ]
@@ -280,28 +255,13 @@
       "list": [
         {
           "name": "categories",
-          "displayName": "Categories",
+          "displayName": "Category",
           "values": [
-            {
-              "name": "Dog Food",
-              "count": 15,
-              "displayName": "Dog Food"
-            },
-            {
-              "name": "Cat Food",
-              "count": 12,
-              "displayName": "Cat Food"
-            },
-            {
-              "name": "Bird Supplies",
-              "count": 8,
-              "displayName": "Bird Supplies"
-            },
-            {
-              "name": "Fish Supplies",
-              "count": 10,
-              "displayName": "Fish Supplies"
-            }
+            { "name": "1037", "count": 15, "displayName": "Dog Food" },
+            { "name": "1038", "count": 12, "displayName": "Cat Food" },
+            { "name": "1039", "count": 8, "displayName": "Bird Supplies" },
+            { "name": "1040", "count": 10, "displayName": "Fish Supplies" },
+            { "name": "1041", "count": 6, "displayName": "Small Animal" }
           ]
         }
       ]

@@ -7,6 +7,7 @@ import { authorizeNetRouter } from './routes/third-party/authorize-net';
 import { integratorRouter } from './routes/third-party/integrator';
 import { kountOAuthRouter, kountRouter } from './routes/third-party/kount';
 import { translateRouter } from './routes/third-party/translate';
+import { medusaStoreRouter } from './routes/store/medusa-store';
 import { unbxdRouter } from './routes/third-party/unbxd';
 import { upsRouter } from './routes/third-party/ups';
 import { googleAddressValidationRouter } from './routes/third-party/google-address-validation';
@@ -83,6 +84,7 @@ export function createApp() {
   app.use(googleAddressValidationRouter);
   app.use(translateRouter);
   app.use(kountRouter);
+  app.use(medusaStoreRouter);
   app.use(unbxdRouter);
   app.use(integratorRouter);
 

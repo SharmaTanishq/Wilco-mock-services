@@ -11,6 +11,8 @@ npm run dev
 
 The server defaults to `http://localhost:3000`.
 
+Load-test / Unbxd + Medusa PDP wiring: see [LOAD_TEST_MOCK.md](./LOAD_TEST_MOCK.md). Optional: `FIXTURES_DIR` for per-id `get-product-<id>.json` overrides; bash smoke script `scripts/load-test-mock-smoke.sh`.
+
 ```sh
 curl http://localhost:3000/health
 curl http://localhost:3000/__mock/routes
@@ -65,9 +67,19 @@ INTEGRATOR_URL=http://localhost:3000/integrator
 
 For commerce route testing, point the commerce middleware/API base URL at this service so calls to `/commerce/*` resolve here.
 
+For **load-test** mocks (same host as Unbxd + `GET /store/get-product`), see [LOAD_TEST_MOCK.md](./LOAD_TEST_MOCK.md). Example:
+
+```env
+UNBXD_COMMERCE_SEARCH_BASE_URL=https://your-mock.up.railway.app/<UNBXD_API_KEY>/<UNBXD_SITE_KEY>
+ECOM_BACKEND_INTERNAL_URL=https://your-mock.up.railway.app
+# Optional:
+# UNBXD_MINIMAL_COMMERCE_RESPONSE=true
+# FIXTURES_DIR=/path/to/get-product-json-overrides
+```
+
 ## Railway
 
-Railway provides `PORT`; the server reads it automatically.
+Railway provides `PORT`; the server reads it automatically. This repo includes `railway.toml` (Railpack builder, `/health` check). No Dockerfile required.
 
 ```sh
 npm run build

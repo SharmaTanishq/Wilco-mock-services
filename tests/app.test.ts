@@ -1,4 +1,7 @@
 import request from 'supertest';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createApp } from '../src/app';
 
@@ -426,6 +429,14 @@ describe('Wilco mock service', () => {
     expect(res.headers['content-type']).toMatch(/application\/json/);
     expect(Array.isArray(res.body.facets.text.list)).toBe(true);
     expect(res.body.facets.text.list.length).toBeGreaterThan(0);
+    const brandFacet = res.body.facets.text.list.find((f: { name: string }) => f.name === 'brand');
+    expect(brandFacet.displayName).toBe('Brands');
+    expect(Array.isArray(brandFacet.values)).toBe(true);
+    expect(typeof brandFacet.values[0]).toBe('string');
+    expect(typeof brandFacet.values[1]).toBe('number');
+    const catFacet = res.body.facets.multilevel.list[0];
+    expect(catFacet.displayName).toBe('Category');
+    expect(catFacet.values[0].name).toBe('1037');
   });
 
   it('returns minimal commerce JSON when UNBXD_MINIMAL_COMMERCE_RESPONSE is enabled', async () => {
@@ -435,8 +446,8 @@ describe('Wilco mock service', () => {
     const search = await request(minimalApp)
       .get('/myApiKey/mySiteKey/search?q=ignored&rows=50')
       .expect(200);
-    expect(search.body.facets.text.list).toEqual([]);
-    expect(search.body.facets.multilevel.list).toEqual([]);
+    expect(search.body.facets.text.list.length).toBeGreaterThan(0);
+    expect(search.body.facets.multilevel.list.length).toBeGreaterThan(0);
     expect(search.body.response.numberOfProducts).toBe(1);
     expect(search.body.response.products).toHaveLength(1);
     expect(search.body.response.products[0].variants).toHaveLength(1);
@@ -446,5 +457,77 @@ describe('Wilco mock service', () => {
       .get('/myApiKey/mySiteKey/category?p=ignored')
       .expect(200);
     expect(category.body.response.products[0].uniqueId).toBe('900001');
+  });
+
+  it('returns Medusa-shaped get-product for each search display id', async () => {
+    const r = await request(app).get('/store/get-product?id=100001').expect(200);
+    expect(r.body.product).toBeDefined();
+    expect(r.body.product.status).toBe('published');
+    expect(r.body.product.variants.length).toBeGreaterThan(0);
+    expect(r.body.product.variants.every((v: { status: string }) => v.status === 'published')).toBe(true);
+    expect(r.body.product.handle).toBe('premium-dog-food-chicken-rice-100001');
+    expect(r.body.product.notSoldOnline).toBe(false);
+  });
+
+  it('maps Unbxd booleans on get-product for pickup-only product', async () => {
+    const r = await request(app).get('/store/get-product?id=100005').expect(200);
+    expect(r.body.product.notSoldOnline).toBe(true);
+    expect(r.body.product.pickupOnly).toBe(true);
+    expect(r.body.product.excludedStates).toEqual(['CA', 'NY']);
+  });
+
+  it('returns 404 for unknown get-product id', async () => {
+    await request(app).get('/store/get-product?id=999999').expect(404);
+  });
+
+  it('returns 501 for unimplemented /store routes', async () => {
+    const r = await request(app).get('/store/regions').expect(501);
+    expect(r.body.error).toBe('store_route_not_mocked');
+  });
+
+  it('returns get-product for minimal fixture display id 900001', async () => {
+    const r = await request(app).get('/store/get-product?id=900001').expect(200);
+    expect(r.body.product.external_id).toBe('900001');
+    expect(r.body.product.variants[0].status).toBe('published');
+  });
+
+  it('uses FIXTURES_DIR get-product-<id>.json when present', async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wilco-mock-fix-'));
+    try {
+      fs.writeFileSync(
+        path.join(dir, 'get-product-777001.json'),
+        JSON.stringify({
+          product: {
+            id: 'prod_override_777',
+            external_id: '777001',
+            title: 'Fixture Override Product',
+            handle: 'fixture-override-777001',
+            description: '',
+            status: 'published',
+            thumbnail: null,
+            images: [],
+            options: [],
+            variants: [
+              {
+                id: 'var_override_1',
+                title: 'Default',
+                sku: 'OVERRIDE-SKU',
+                status: 'published',
+                inventory_quantity: 1,
+                prices: [{ currency_code: 'usd', amount: 100, id: 'p1' }],
+              },
+            ],
+            categories: [],
+            metadata: {},
+          },
+        })
+      );
+      vi.stubEnv('FIXTURES_DIR', dir);
+      const appWithDir = createApp();
+      const res = await request(appWithDir).get('/store/get-product?id=777001').expect(200);
+      expect(res.body.product.title).toBe('Fixture Override Product');
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
   });
 });

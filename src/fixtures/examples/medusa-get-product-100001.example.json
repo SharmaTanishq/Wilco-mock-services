@@ -1,0 +1,33 @@
+{
+  "product": {
+    "id": "prod_mock_100001",
+    "external_id": "100001",
+    "title": "Premium Dog Food - Chicken & Rice",
+    "handle": "premium-dog-food-chicken-rice-100001",
+    "description": "High-protein formula for adult dogs with real chicken",
+    "status": "published",
+    "thumbnail": "https://example.com/images/dog-food-1.jpg",
+    "metadata": { "display_id": "100001", "brand": "PetCare Pro" },
+    "images": [
+      { "id": "img_100001_0", "url": "https://example.com/images/dog-food-1.jpg", "rank": 0, "metadata": {} }
+    ],
+    "options": [],
+    "variants": [
+      {
+        "id": "var_mock_1_5lb",
+        "title": "Variant 1",
+        "sku": "DOGFOOD-PREM-5LB",
+        "status": "published",
+        "inventory_quantity": 45,
+        "prices": [{ "id": "price_100001_0", "currency_code": "usd", "amount": 2499, "min_quantity": null, "max_quantity": null }]
+      }
+    ],
+    "categories": [
+      { "id": "pcat_100001_0", "name": "Dog Food", "handle": "dog-food", "description": null },
+      { "id": "pcat_100001_1", "name": "Premium", "handle": "premium", "description": null }
+    ],
+    "type_id": null,
+    "collection_id": null,
+    "tags": []
+  }
+}
