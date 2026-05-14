@@ -429,14 +429,18 @@ describe('Wilco mock service', () => {
     expect(res.headers['content-type']).toMatch(/application\/json/);
     expect(Array.isArray(res.body.facets.text.list)).toBe(true);
     expect(res.body.facets.text.list.length).toBeGreaterThan(0);
-    const brandFacet = res.body.facets.text.list.find((f: { name: string }) => f.name === 'brand');
-    expect(brandFacet.displayName).toBe('Brands');
+    const brandFacet = res.body.facets.text.list.find(
+      (f: { displayName?: string }) => f.displayName === 'Brands',
+    );
+    expect(brandFacet.facetName).toBe('brand_uFilter');
     expect(Array.isArray(brandFacet.values)).toBe(true);
     expect(typeof brandFacet.values[0]).toBe('string');
     expect(typeof brandFacet.values[1]).toBe('number');
     const catFacet = res.body.facets.multilevel.list[0];
     expect(catFacet.displayName).toBe('Category');
-    expect(catFacet.values[0].name).toBe('1037');
+    expect(catFacet.values[0].name).toBe('1068');
+    expect(res.body.response.numberOfProducts).toBe(26);
+    expect(res.body.response.products).toHaveLength(5);
   });
 
   it('returns minimal commerce JSON when UNBXD_MINIMAL_COMMERCE_RESPONSE is enabled', async () => {
@@ -459,21 +463,26 @@ describe('Wilco mock service', () => {
     expect(category.body.response.products[0].uniqueId).toBe('900001');
   });
 
-  it('returns Medusa-shaped get-product for each search display id', async () => {
-    const r = await request(app).get('/store/get-product?id=100001').expect(200);
+  it('returns Medusa-shaped get-product keyed by Unbxd uniqueId (display id)', async () => {
+    const r = await request(app).get('/store/get-product?id=4584').expect(200);
     expect(r.body.product).toBeDefined();
     expect(r.body.product.status).toBe('published');
     expect(r.body.product.variants.length).toBeGreaterThan(0);
-    expect(r.body.product.variants.every((v: { status: string }) => v.status === 'published')).toBe(true);
-    expect(r.body.product.handle).toBe('premium-dog-food-chicken-rice-100001');
+    expect(r.body.product.variants.every((v: { status: string }) => v.status === 'published')).toBe(
+      true,
+    );
+    expect(r.body.product.id).toBe('prod_01K06D46MAWFMT5AA21AQ6118P');
+    expect(r.body.product.external_id).toBe('4584');
+    expect(r.body.product.metadata.display_id).toBe('4584');
+    expect(r.body.product.title).toContain('Swheat Scoop');
     expect(r.body.product.notSoldOnline).toBe(false);
   });
 
-  it('maps Unbxd booleans on get-product for pickup-only product', async () => {
-    const r = await request(app).get('/store/get-product?id=100005').expect(200);
-    expect(r.body.product.notSoldOnline).toBe(true);
-    expect(r.body.product.pickupOnly).toBe(true);
-    expect(r.body.product.excludedStates).toEqual(['CA', 'NY']);
+  it('maps excludedStates from Unbxd hit on get-product', async () => {
+    const r = await request(app).get('/store/get-product?id=6660').expect(200);
+    expect(r.body.product.notSoldOnline).toBe(false);
+    expect(r.body.product.pickupOnly).toBe(false);
+    expect(r.body.product.excludedStates).toEqual(['CA']);
   });
 
   it('returns 404 for unknown get-product id', async () => {

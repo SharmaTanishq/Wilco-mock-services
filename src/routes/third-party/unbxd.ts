@@ -32,12 +32,24 @@ const getPaginationParams = (req: Request) => {
 /**
  * Helper to slice product results for pagination
  */
-const paginateProducts = (products: any[], start: number, rows: number) => {
+const paginateProducts = (
+  products: any[],
+  start: number,
+  rows: number,
+  fixtureDeclaredTotal?: unknown
+) => {
+  const catalogLen = products.length;
+  const declared =
+    typeof fixtureDeclaredTotal === 'number' && !Number.isNaN(fixtureDeclaredTotal)
+      ? fixtureDeclaredTotal
+      : undefined;
+  const numberOfProducts =
+    declared !== undefined && declared >= catalogLen ? declared : catalogLen;
   return {
     products: products.slice(start, start + rows),
     start,
     rows,
-    numberOfProducts: products.length,
+    numberOfProducts,
   };
 };
 
@@ -54,7 +66,12 @@ unbxdRouter.get('/:apiKey/:siteKey/search', (req: Request, res: Response) => {
   const { start, rows } = getPaginationParams(req);
   const fixture = commerceSearchFixture();
 
-  const paginatedResponse = paginateProducts(fixture.response.products, start, rows);
+  const paginatedResponse = paginateProducts(
+    fixture.response.products,
+    start,
+    rows,
+    fixture.response.numberOfProducts
+  );
 
   sendCommerceJson(res, {
     response: {
@@ -91,7 +108,12 @@ unbxdRouter.get('/:apiKey/:siteKey/category', (req: Request, res: Response) => {
   const { start, rows } = getPaginationParams(req);
   const fixture = commerceSearchFixture();
 
-  const paginatedResponse = paginateProducts(fixture.response.products, start, rows);
+  const paginatedResponse = paginateProducts(
+    fixture.response.products,
+    start,
+    rows,
+    fixture.response.numberOfProducts
+  );
 
   sendCommerceJson(res, {
     response: {
@@ -189,7 +211,8 @@ unbxdRouter.get('/search', (req: Request, res: Response) => {
   const paginatedResponse = paginateProducts(
     searchFixture.response.products,
     start,
-    rows
+    rows,
+    searchFixture.response.numberOfProducts
   );
 
   res.json({

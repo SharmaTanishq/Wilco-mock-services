@@ -23,7 +23,7 @@ export type UnbxdSearchProduct = {
   medusaId: string;
   title: string;
   description: string;
-  handle: string;
+  handle?: string;
   productUrl: string;
   imageUrl: string[];
   brand?: string;
@@ -54,12 +54,16 @@ function slug(s: string) {
 
 export function buildMedusaStoreProductFromUnbxd(p: UnbxdSearchProduct) {
   const displayId = String(p.uniqueId);
-  const productId = `prod_mock_${displayId}`;
+  const medusaId = String(p.medusaId ?? '').trim();
+  const productId = medusaId || `prod_mock_${displayId}`;
 
   const variants = (p.variants ?? []).map((v, idx) => {
     const qty = typeof v.storeAvailability_1_unx_d === 'number' ? v.storeAvailability_1_unx_d : 10;
     const sale = Number(v.variantSalePrice);
-    const amountCents = Number.isFinite(sale) ? Math.round(sale * 100) : 999;
+    const retail = Number(v.variantRetailPrice);
+    const unit =
+      Number.isFinite(sale) && sale > 0 ? sale : Number.isFinite(retail) ? retail : NaN;
+    const amountCents = Number.isFinite(unit) ? Math.round(unit * 100) : 999;
     return {
       id: String(v.variantMedusaId),
       title: `Variant ${idx + 1}`,
@@ -115,7 +119,7 @@ export function buildMedusaStoreProductFromUnbxd(p: UnbxdSearchProduct) {
     id: productId,
     external_id: displayId,
     title: p.title,
-    handle: p.handle,
+    handle: p.handle ?? '',
     description: p.description ?? '',
     subtitle: null,
     status: 'published' as const,
