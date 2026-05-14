@@ -7,8 +7,8 @@
         "medusaId": "prod_mock_1",
         "title": "Premium Dog Food - Chicken & Rice",
         "description": "High-protein formula for adult dogs with real chicken",
-        "handle": "premium-dog-food-chicken-rice",
-        "productUrl": "/product/premium-dog-food-chicken-rice",
+        "handle": "premium-dog-food-chicken-rice-100001",
+        "productUrl": "/product/premium-dog-food-chicken-rice-100001",
         "imageUrl": ["https://example.com/images/dog-food-1.jpg"],
         "notSoldOnline": "false",
         "hidePricingOnline": "false",
@@ -62,8 +62,8 @@
         "medusaId": "prod_mock_2",
         "title": "Organic Cat Food - Salmon Formula",
         "description": "Natural ingredients with omega-3 for healthy coat",
-        "handle": "organic-cat-food-salmon",
-        "productUrl": "/product/organic-cat-food-salmon",
+        "handle": "organic-cat-food-salmon-100002",
+        "productUrl": "/product/organic-cat-food-salmon-100002",
         "imageUrl": ["https://example.com/images/cat-food-1.jpg"],
         "notSoldOnline": "false",
         "hidePricingOnline": "false",
@@ -100,8 +100,8 @@
         "medusaId": "prod_mock_3",
         "title": "Bird Seed Mix - Premium Blend",
         "description": "Attracts wild birds year-round with nutritious seeds",
-        "handle": "bird-seed-mix-premium",
-        "productUrl": "/product/bird-seed-mix-premium",
+        "handle": "bird-seed-mix-premium-100003",
+        "productUrl": "/product/bird-seed-mix-premium-100003",
         "imageUrl": ["https://example.com/images/bird-seed-1.jpg"],
         "notSoldOnline": "false",
         "hidePricingOnline": "false",
@@ -138,8 +138,8 @@
         "medusaId": "prod_mock_4",
         "title": "Fish Food - Tropical Flakes",
         "description": "Balanced nutrition for colorful tropical fish",
-        "handle": "fish-food-tropical-flakes",
-        "productUrl": "/product/fish-food-tropical-flakes",
+        "handle": "fish-food-tropical-flakes-100004",
+        "productUrl": "/product/fish-food-tropical-flakes-100004",
         "imageUrl": ["https://example.com/images/fish-food-1.jpg"],
         "notSoldOnline": "false",
         "hidePricingOnline": "false",
@@ -176,8 +176,8 @@
         "medusaId": "prod_mock_5",
         "title": "Rabbit Pellets - Hay & Timothy",
         "description": "Complete diet for healthy rabbits with natural fiber",
-        "handle": "rabbit-pellets-hay-timothy",
-        "productUrl": "/product/rabbit-pellets-hay-timothy",
+        "handle": "rabbit-pellets-hay-timothy-100005",
+        "productUrl": "/product/rabbit-pellets-hay-timothy-100005",
         "imageUrl": ["https://example.com/images/rabbit-food-1.jpg"],
         "notSoldOnline": "true",
         "hidePricingOnline": "false",
@@ -248,19 +248,29 @@
           "displayName": "Price",
           "values": [
             {
-              "name": "0-25",
-              "count": 18,
-              "displayName": "$0 - $25"
+              "name": "Under $24.99",
+              "count": 12,
+              "displayName": "Under $24.99"
             },
             {
-              "name": "25-50",
-              "count": 15,
-              "displayName": "$25 - $50"
+              "name": "$25.00 to $49.99",
+              "count": 10,
+              "displayName": "$25.00 to $49.99"
             },
             {
-              "name": "50+",
-              "count": 17,
-              "displayName": "$50 +"
+              "name": "$50.00 to $99.99",
+              "count": 8,
+              "displayName": "$50.00 to $99.99"
+            },
+            {
+              "name": "$100.00 to $199.99",
+              "count": 5,
+              "displayName": "$100.00 to $199.99"
+            },
+            {
+              "name": "$200 and above",
+              "count": 3,
+              "displayName": "$200 and above"
             }
           ]
         }

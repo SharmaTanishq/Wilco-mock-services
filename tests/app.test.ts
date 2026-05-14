@@ -440,11 +440,11 @@ describe('Wilco mock service', () => {
     expect(search.body.response.numberOfProducts).toBe(1);
     expect(search.body.response.products).toHaveLength(1);
     expect(search.body.response.products[0].variants).toHaveLength(1);
-    expect(search.body.response.products[0].uniqueId).toBe('loadtest-001');
+    expect(search.body.response.products[0].uniqueId).toBe('900001');
 
     const category = await request(minimalApp)
       .get('/myApiKey/mySiteKey/category?p=ignored')
       .expect(200);
-    expect(category.body.response.products[0].uniqueId).toBe('loadtest-001');
+    expect(category.body.response.products[0].uniqueId).toBe('900001');
   });
 });

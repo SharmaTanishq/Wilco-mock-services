@@ -3,12 +3,12 @@
     "numberOfProducts": 1,
     "products": [
       {
-        "uniqueId": "loadtest-001",
+        "uniqueId": "900001",
         "medusaId": "prod_loadtest_1",
         "title": "Load Test Product",
         "description": "Minimal canned Unbxd commerce response for load testing.",
-        "handle": "load-test-product",
-        "productUrl": "/product/load-test-product",
+        "handle": "load-test-product-900001",
+        "productUrl": "/product/load-test-product-900001",
         "imageUrl": ["https://example.com/images/load-test.jpg"],
         "notSoldOnline": "false",
         "hidePricingOnline": "false",
