@@ -20,6 +20,15 @@ const sendCommerceJson = (res: Response, body: unknown) => {
   res.json(body);
 };
 
+/** Keeps fixture `searchMetaData.queryParams` (Unbxd echo) and overlays request pagination + q/p. */
+function mergeCommerceQueryParams(
+  fixtureMeta: { queryParams?: Record<string, unknown> } | undefined,
+  patch: Record<string, string | number>
+): Record<string, unknown> {
+  const base = fixtureMeta?.queryParams && typeof fixtureMeta.queryParams === 'object' ? { ...fixtureMeta.queryParams } : {};
+  return { ...base, ...patch };
+}
+
 /**
  * Helper to get pagination parameters from request
  */
@@ -84,11 +93,11 @@ unbxdRouter.get('/:apiKey/:siteKey/search', (req: Request, res: Response) => {
     facets: fixture.facets,
     searchMetaData: {
       ...fixture.searchMetaData,
-      queryParams: {
-        q: query,
+      queryParams: mergeCommerceQueryParams(fixture.searchMetaData as { queryParams?: Record<string, unknown> }, {
+        q: query || String((fixture.searchMetaData as { queryParams?: { q?: string } })?.queryParams?.q ?? ''),
         start,
         rows,
-      },
+      }),
       status: 0,
     },
     redirect: fixture.redirect,
@@ -126,11 +135,11 @@ unbxdRouter.get('/:apiKey/:siteKey/category', (req: Request, res: Response) => {
     facets: fixture.facets,
     searchMetaData: {
       ...fixture.searchMetaData,
-      queryParams: {
+      queryParams: mergeCommerceQueryParams(fixture.searchMetaData as { queryParams?: Record<string, unknown> }, {
         p: categoryPath,
         start,
         rows,
-      },
+      }),
       status: 0,
     },
     redirect: fixture.redirect,

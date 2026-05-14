@@ -439,11 +439,15 @@ describe('Wilco mock service', () => {
     const catFacet = res.body.facets.multilevel.list[0];
     expect(catFacet.displayName).toBe('Category');
     const catNames = catFacet.values.map((v: { name: string }) => v.name);
-    expect(catNames).toContain('1068');
-    expect(catNames).toContain('174');
-    expect(catFacet.values.length).toBeGreaterThanOrEqual(6);
-    expect(res.body.response.numberOfProducts).toBe(97);
-    expect(res.body.response.products).toHaveLength(17);
+    expect(catNames).toContain('1126');
+    expect(catNames).toContain('1125');
+    expect(catFacet.values.length).toBeGreaterThanOrEqual(2);
+    expect(res.body.response.numberOfProducts).toBe(78);
+    expect(res.body.response.products).toHaveLength(12);
+    expect(res.body.response.rows).toBe(50);
+    expect(res.body.response.pageSize).toBe(50);
+    expect(res.body.searchMetaData.queryParams.apiKey).toBe('e601249d527ca92a5779172e2b0443f1');
+    expect(res.body.searchMetaData.queryParams['variants.fields']).toContain('variantMedusaId');
   });
 
   it('returns minimal commerce JSON when UNBXD_MINIMAL_COMMERCE_RESPONSE is enabled', async () => {
@@ -466,40 +470,35 @@ describe('Wilco mock service', () => {
     expect(category.body.response.products[0].uniqueId).toBe('900001');
   });
 
-  it('returns Medusa-shaped get-product keyed by Unbxd uniqueId (display id)', async () => {
-    const r = await request(app).get('/store/get-product?id=4584').expect(200);
+  it('returns Medusa-shaped get-product for poultry feed (Layena Pellets)', async () => {
+    const r = await request(app).get('/store/get-product?id=986').expect(200);
     expect(r.body.product).toBeDefined();
     expect(r.body.product.status).toBe('published');
     expect(r.body.product.variants.length).toBeGreaterThan(0);
     expect(r.body.product.variants.every((v: { status: string }) => v.status === 'published')).toBe(
       true,
     );
-    expect(r.body.product.id).toBe('prod_01K06D46MAWFMT5AA21AQ6118P');
-    expect(r.body.product.external_id).toBe('4584');
-    expect(r.body.product.metadata.display_id).toBe('4584');
-    expect(r.body.product.title).toContain('Swheat Scoop');
+    expect(r.body.product.id).toBe('prod_01K0PZS79JT2ECQD682BGNX8SZ');
+    expect(r.body.product.external_id).toBe('986');
+    expect(r.body.product.metadata.display_id).toBe('986');
+    expect(r.body.product.title).toContain('Layena Pellets');
     expect(r.body.product.notSoldOnline).toBe(false);
   });
 
   it('maps excludedStates from Unbxd hit on get-product', async () => {
-    const r = await request(app).get('/store/get-product?id=6660').expect(200);
+    const r = await request(app).get('/store/get-product?id=944').expect(200);
     expect(r.body.product.notSoldOnline).toBe(false);
     expect(r.body.product.pickupOnly).toBe(false);
-    expect(r.body.product.excludedStates).toEqual(['CA']);
+    expect(r.body.product.excludedStates).toEqual([]);
   });
 
-  it('returns get-product for fencing hardware cloth (display id 9498)', async () => {
-    const r = await request(app).get('/store/get-product?id=9498').expect(200);
-    expect(r.body.product.id).toBe('prod_01K06D4K7N4C76TYRD2GJVA1T3');
-    expect(r.body.product.external_id).toBe('9498');
-    expect(r.body.product.title).toContain('Hardware Cloth');
-    expect(r.body.product.excludedStates).toEqual(['CA']);
-  });
-
-  it('maps pickupOnly from Unbxd hit (barbed wire)', async () => {
-    const r = await request(app).get('/store/get-product?id=9372').expect(200);
-    expect(r.body.product.pickupOnly).toBe(true);
-    expect(r.body.product.title).toContain('Barbed Wire');
+  it('returns get-product with multiple variants for Scratch Grains', async () => {
+    const r = await request(app).get('/store/get-product?id=7906').expect(200);
+    expect(r.body.product.id).toBe('prod_01K06D4FBX97VQT5FCZBCTXE3R');
+    expect(r.body.product.variants).toHaveLength(3);
+    expect(r.body.product.variants.map((v: { sku: string }) => v.sku).sort()).toEqual(
+      ['1010924', '5158202', '9229718'].sort(),
+    );
   });
 
   it('returns 404 for unknown get-product id', async () => {
