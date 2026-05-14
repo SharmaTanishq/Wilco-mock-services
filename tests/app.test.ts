@@ -442,8 +442,8 @@ describe('Wilco mock service', () => {
     expect(catNames).toContain('1068');
     expect(catNames).toContain('174');
     expect(catFacet.values.length).toBeGreaterThanOrEqual(6);
-    expect(res.body.response.numberOfProducts).toBe(102);
-    expect(res.body.response.products).toHaveLength(22);
+    expect(res.body.response.numberOfProducts).toBe(97);
+    expect(res.body.response.products).toHaveLength(17);
   });
 
   it('returns minimal commerce JSON when UNBXD_MINIMAL_COMMERCE_RESPONSE is enabled', async () => {
