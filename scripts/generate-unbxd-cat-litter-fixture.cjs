@@ -1,5 +1,5 @@
 /**
- * Generates src/fixtures/unbxd-search-response.json — Poultry / Poultry Feed (query 1126)
+ * Generates src/fixtures/unbxd-search-poultry.json — Poultry / Poultry Feed (query 1126)
  * catalog for search + get-product mocks. Run: node scripts/generate-unbxd-cat-litter-fixture.cjs
  */
 const fs = require('node:fs');
@@ -607,6 +607,6 @@ const fixture = {
   redirect: { value: null },
 };
 
-const out = path.join(__dirname, '..', 'src', 'fixtures', 'unbxd-search-response.json');
+const out = path.join(__dirname, '..', 'src', 'fixtures', 'unbxd-search-poultry.json');
 fs.writeFileSync(out, JSON.stringify(fixture, null, 2) + '\n', 'utf8');
 console.log('Wrote', out, 'products:', products.length);

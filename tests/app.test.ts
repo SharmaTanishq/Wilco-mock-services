@@ -424,7 +424,7 @@ describe('Wilco mock service', () => {
     expect(unbxd.body.response.products[0].sku).toBe('1038510');
   });
 
-  it('returns full Unbxd commerce facets by default for path-shaped search', async () => {
+  it('returns merged Unbxd commerce catalog for generic search (poultry + fencing + cat litter)', async () => {
     const res = await request(app).get('/any-api-key/any-site-key/search?q=test').expect(200);
     expect(res.headers['content-type']).toMatch(/application\/json/);
     expect(Array.isArray(res.body.facets.text.list)).toBe(true);
@@ -441,13 +441,36 @@ describe('Wilco mock service', () => {
     const catNames = catFacet.values.map((v: { name: string }) => v.name);
     expect(catNames).toContain('1126');
     expect(catNames).toContain('1125');
+    expect(catNames).toContain('174');
+    expect(catNames).toContain('1067');
     expect(catFacet.values.length).toBeGreaterThanOrEqual(2);
-    expect(res.body.response.numberOfProducts).toBe(78);
-    expect(res.body.response.products).toHaveLength(12);
+    expect(res.body.response.numberOfProducts).toBe(29);
+    expect(res.body.response.products).toHaveLength(29);
     expect(res.body.response.rows).toBe(50);
     expect(res.body.response.pageSize).toBe(50);
     expect(res.body.searchMetaData.queryParams.apiKey).toBe('e601249d527ca92a5779172e2b0443f1');
     expect(res.body.searchMetaData.queryParams['variants.fields']).toContain('variantMedusaId');
+  });
+
+  it('returns poultry fixture for category query 1126', async () => {
+    const res = await request(app).get('/any-api-key/any-site-key/search?q=1126').expect(200);
+    expect(res.body.response.numberOfProducts).toBe(78);
+    expect(res.body.response.products).toHaveLength(12);
+    expect(res.body.response.products.map((p: { uniqueId: string }) => p.uniqueId)).toContain('986');
+  });
+
+  it('returns fencing fixture for category query 164', async () => {
+    const res = await request(app).get('/any-api-key/any-site-key/search?q=164').expect(200);
+    expect(res.body.response.numberOfProducts).toBe(102);
+    expect(res.body.response.products).toHaveLength(12);
+    expect(res.body.response.products.map((p: { uniqueId: string }) => p.uniqueId)).toContain('9498');
+  });
+
+  it('returns cat litter fixture for category query 1067', async () => {
+    const res = await request(app).get('/any-api-key/any-site-key/search?q=1067').expect(200);
+    expect(res.body.response.numberOfProducts).toBe(26);
+    expect(res.body.response.products).toHaveLength(5);
+    expect(res.body.response.products.map((p: { uniqueId: string }) => p.uniqueId)).toContain('7877');
   });
 
   it('returns minimal commerce JSON when UNBXD_MINIMAL_COMMERCE_RESPONSE is enabled', async () => {
@@ -468,6 +491,18 @@ describe('Wilco mock service', () => {
       .get('/myApiKey/mySiteKey/category?p=ignored')
       .expect(200);
     expect(category.body.response.products[0].uniqueId).toBe('900001');
+  });
+
+  it('returns Medusa-shaped get-product for fencing SKU 9498', async () => {
+    const r = await request(app).get('/store/get-product?id=9498').expect(200);
+    expect(r.body.product.external_id).toBe('9498');
+    expect(r.body.product.title.toLowerCase()).toMatch(/hardware|mesh|wire|fencing/);
+  });
+
+  it('returns Medusa-shaped get-product for cat litter SKU 7877', async () => {
+    const r = await request(app).get('/store/get-product?id=7877').expect(200);
+    expect(r.body.product.external_id).toBe('7877');
+    expect(r.body.product.title.toLowerCase()).toContain('litter');
   });
 
   it('returns Medusa-shaped get-product for poultry feed (Layena Pellets)', async () => {

@@ -1,18 +1,18 @@
 import { Router, Request, Response } from 'express';
 import { registerRoute } from '../../mock-registry';
-import searchFixture from '../../fixtures/unbxd-search-response.json';
 import commerceMinimalFixture from '../../fixtures/unbxd-commerce-search-minimal.json';
 import autosuggestFixture from '../../fixtures/unbxd-autosuggest-response.json';
+import { resolveCommerceSearchFixture } from '../../lib/unbxd-commerce-fixture';
 
 /** Unbxd: productUrl/handle end with -<numeric uniqueId> for Nuxt PDP. Text facets use flat values[]; multilevel Category uses numeric name ids. */
 export const unbxdRouter = Router();
 
-const commerceSearchFixture = () => {
+const commerceSearchFixture = (req: Request) => {
   const v = process.env.UNBXD_MINIMAL_COMMERCE_RESPONSE?.trim().toLowerCase();
   if (v === '1' || v === 'true' || v === 'yes') {
     return commerceMinimalFixture;
   }
-  return searchFixture;
+  return resolveCommerceSearchFixture(req);
 };
 
 const sendCommerceJson = (res: Response, body: unknown) => {
@@ -73,7 +73,7 @@ unbxdRouter.get('/:apiKey/:siteKey/search', (req: Request, res: Response) => {
   }
   const query = String(req.query.q ?? req.query.query ?? '');
   const { start, rows } = getPaginationParams(req);
-  const fixture = commerceSearchFixture();
+  const fixture = commerceSearchFixture(req);
 
   const paginatedResponse = paginateProducts(
     fixture.response.products,
@@ -115,7 +115,7 @@ unbxdRouter.get('/:apiKey/:siteKey/category', (req: Request, res: Response) => {
   }
   const categoryPath = String(req.query.p ?? '');
   const { start, rows } = getPaginationParams(req);
-  const fixture = commerceSearchFixture();
+  const fixture = commerceSearchFixture(req);
 
   const paginatedResponse = paginateProducts(
     fixture.response.products,
@@ -216,12 +216,13 @@ unbxdRouter.get('/autosuggest', (req: Request, res: Response) => {
 unbxdRouter.get('/search', (req: Request, res: Response) => {
   const query = String(req.query.q ?? req.query.query ?? '');
   const { start, rows } = getPaginationParams(req);
+  const fixture = commerceSearchFixture(req);
 
   const paginatedResponse = paginateProducts(
-    searchFixture.response.products,
+    fixture.response.products,
     start,
     rows,
-    searchFixture.response.numberOfProducts
+    fixture.response.numberOfProducts
   );
 
   res.json({
@@ -235,7 +236,7 @@ unbxdRouter.get('/search', (req: Request, res: Response) => {
       start: paginatedResponse.start,
       rows: paginatedResponse.rows,
     },
-    facets: searchFixture.facets,
+    facets: fixture.facets,
   });
 });
 

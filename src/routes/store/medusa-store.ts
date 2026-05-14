@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
-import searchFixture from '../../fixtures/unbxd-search-response.json';
 import commerceMinimalFixture from '../../fixtures/unbxd-commerce-search-minimal.json';
 import { registerRoute } from '../../mock-registry';
+import { getAllUnbxdCommerceCatalogProducts } from '../../lib/unbxd-commerce-fixture';
 import { buildMedusaStoreProductFromUnbxd, type UnbxdSearchProduct } from '../../lib/unbxd-to-medusa-store-product';
 import { loadGetProductFixtureOverride } from '../../lib/medusa-fixture-override';
 
@@ -9,7 +9,7 @@ import { loadGetProductFixtureOverride } from '../../lib/medusa-fixture-override
 const storeRouter = Router();
 
 function allUnbxdCatalogProducts(): unknown[] {
-  return [...searchFixture.response.products, ...commerceMinimalFixture.response.products];
+  return [...getAllUnbxdCommerceCatalogProducts(), ...commerceMinimalFixture.response.products];
 }
 
 function findUnbxdProductByDisplayId(id: string): unknown | undefined {

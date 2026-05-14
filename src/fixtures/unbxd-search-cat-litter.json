@@ -1,0 +1,391 @@
+{
+  "searchMetaData": {
+    "status": 0,
+    "queryTime": 38,
+    "queryParams": {
+      "apiKey": "e601249d527ca92a5779172e2b0443f1",
+      "dd.tag": "mimir.search",
+      "q": "1067",
+      "start": "0",
+      "rows": "50",
+      "uid": "mock-cat-litter",
+      "fields": "medusaId,title,description,imageUrl,notSoldOnline,hidePricingOnline,strictImap,isNew,limitedStockQuantity,pickupOnly,productUrl,excludedStates",
+      "variants.count": "100",
+      "variants.fields": "isDiscontinued,variantSalePrice,variantRetailPrice,lowestDisplayPrice,width,weight,length,height,weightUnit,variantSku,variantMedusaId,storeAvailability_1_unx_d,storeAvailability_2_unx_d,storeAvailability_3_unx_d,storeAvailability_4_unx_d,storeAvailability_5_unx_d,storeAvailability_6_unx_d,storeAvailability_7_unx_d,storeAvailability_8_unx_d,storeAvailability_9_unx_d,storeAvailability_10_unx_d,storeAvailability_11_unx_d,storeAvailability_12_unx_d,storeAvailability_13_unx_d,storeAvailability_14_unx_d,storeAvailability_15_unx_d,storeAvailability_16_unx_d,storeAvailability_17_unx_d,storeAvailability_18_unx_d,storeAvailability_19_unx_d,storeAvailability_20_unx_d,storeAvailability_21_unx_d,storeAvailability_22_unx_d,storeAvailability_23_unx_d,storeAvailability_24_unx_d,storeAvailability_25_unx_d,storeAvailability_26_unx_d,storeAvailability_27_unx_d,storeAvailability_28_unx_d,storeAvailability_29_unx_d,storeAvailability_90_unx_d,storeAvailability_99_unx_d"
+    }
+  },
+  "response": {
+    "numberOfProducts": 26,
+    "start": 0,
+    "products": [
+      {
+        "uniqueId": "7877",
+        "medusaId": "prod_01K06D4FBZAXYCF64DQVAEKY6S",
+        "title": "Fresh & Natural, Unscented Scoopable Cat Litter",
+        "description": "",
+        "productUrl": "https://farmstore-modern.us/product/pet/cat-litter/litter/fresh-natural-unscented-scoopable-cat-litter-7877",
+        "imageUrl": [
+          "https://media.farmstore.com/20181016221041/1167690_1.jpg"
+        ],
+        "notSoldOnline": "false",
+        "hidePricingOnline": "false",
+        "strictImap": "false",
+        "isNew": "false",
+        "pickupOnly": "false",
+        "limitedStockQuantity": 1,
+        "excludedStates": [],
+        "score": 0.25,
+        "variantCount": 2,
+        "variantTotal": 2,
+        "variants": [
+          {
+            "isDiscontinued": "false",
+            "variantSalePrice": 0,
+            "score": 1,
+            "weightUnit": "LB",
+            "variantMedusaId": "variant_01KEGBNA85H8JH6ANVA80VNH9D",
+            "variantSku": "1238708",
+            "variantRetailPrice": 9.99,
+            "width": 12,
+            "length": 2,
+            "height": 19,
+            "weight": 19,
+            "storeAvailability_1_unx_d": 13,
+            "storeAvailability_2_unx_d": 11,
+            "storeAvailability_3_unx_d": 26,
+            "storeAvailability_4_unx_d": 15,
+            "storeAvailability_5_unx_d": 2,
+            "storeAvailability_6_unx_d": 6,
+            "storeAvailability_7_unx_d": 13,
+            "storeAvailability_8_unx_d": 0,
+            "storeAvailability_9_unx_d": 10,
+            "storeAvailability_10_unx_d": 22,
+            "storeAvailability_11_unx_d": 15,
+            "storeAvailability_12_unx_d": 13,
+            "storeAvailability_13_unx_d": 7,
+            "storeAvailability_14_unx_d": 0,
+            "storeAvailability_15_unx_d": 16,
+            "storeAvailability_16_unx_d": 13,
+            "storeAvailability_17_unx_d": 14,
+            "storeAvailability_18_unx_d": 1,
+            "storeAvailability_19_unx_d": 18,
+            "storeAvailability_20_unx_d": 4,
+            "storeAvailability_21_unx_d": 7,
+            "storeAvailability_22_unx_d": 12,
+            "storeAvailability_23_unx_d": 14,
+            "storeAvailability_24_unx_d": 6,
+            "storeAvailability_25_unx_d": 11,
+            "storeAvailability_26_unx_d": 15,
+            "storeAvailability_27_unx_d": 7,
+            "storeAvailability_28_unx_d": 12,
+            "storeAvailability_29_unx_d": 0,
+            "storeAvailability_90_unx_d": 0,
+            "storeAvailability_99_unx_d": 730
+          },
+          {
+            "isDiscontinued": "false",
+            "variantSalePrice": 0,
+            "score": 1,
+            "weightUnit": "LB",
+            "variantMedusaId": "variant_01KEGBNA9KE68RC61S4TD4PMCY",
+            "variantSku": "1238710",
+            "variantRetailPrice": 17.99,
+            "width": 14.5,
+            "length": 3.5,
+            "height": 20,
+            "weight": 25,
+            "storeAvailability_1_unx_d": 18,
+            "storeAvailability_2_unx_d": 10,
+            "storeAvailability_3_unx_d": 33,
+            "storeAvailability_4_unx_d": 25,
+            "storeAvailability_5_unx_d": 19,
+            "storeAvailability_6_unx_d": 25,
+            "storeAvailability_7_unx_d": 44,
+            "storeAvailability_8_unx_d": 12,
+            "storeAvailability_9_unx_d": 13,
+            "storeAvailability_10_unx_d": 24,
+            "storeAvailability_11_unx_d": 28,
+            "storeAvailability_12_unx_d": 25,
+            "storeAvailability_13_unx_d": 30,
+            "storeAvailability_14_unx_d": 0,
+            "storeAvailability_15_unx_d": 23,
+            "storeAvailability_16_unx_d": 13,
+            "storeAvailability_17_unx_d": 26,
+            "storeAvailability_18_unx_d": 16,
+            "storeAvailability_19_unx_d": 17,
+            "storeAvailability_20_unx_d": 16,
+            "storeAvailability_21_unx_d": 15,
+            "storeAvailability_22_unx_d": 33,
+            "storeAvailability_23_unx_d": 15,
+            "storeAvailability_24_unx_d": 8,
+            "storeAvailability_25_unx_d": 8,
+            "storeAvailability_26_unx_d": 24,
+            "storeAvailability_27_unx_d": 23,
+            "storeAvailability_28_unx_d": 18,
+            "storeAvailability_29_unx_d": 0,
+            "storeAvailability_90_unx_d": 0,
+            "storeAvailability_99_unx_d": 1286
+          }
+        ]
+      },
+      {
+        "uniqueId": "6660",
+        "medusaId": "prod_01K06D4CDRMY3JE3Z2C14YMERC",
+        "title": "Tidy Cat, Lightweight 24/7 Performance Clumping Cat Litter, 8.5 lb",
+        "description": "Lightweight clumping litter.",
+        "productUrl": "https://farmstore-modern.us/product/pet/cat-litter/litter/tidy-cat-lightweight-247-performance-clumping-cat-litter-85-lb-6660",
+        "imageUrl": [
+          "https://media.farmstore.com/20181016211925/1127784_1-510x576.jpg"
+        ],
+        "notSoldOnline": "false",
+        "hidePricingOnline": "false",
+        "strictImap": "false",
+        "isNew": "false",
+        "pickupOnly": "false",
+        "limitedStockQuantity": 1,
+        "excludedStates": [
+          "CA"
+        ],
+        "score": 0.25,
+        "variantCount": 1,
+        "variantTotal": 1,
+        "variants": [
+          {
+            "isDiscontinued": "false",
+            "variantSalePrice": 0,
+            "score": 1,
+            "weightUnit": "LB",
+            "variantMedusaId": "variant_01KEGBM8RDSY1YX0XB9MW93X3G",
+            "variantSku": "5182266",
+            "variantRetailPrice": 19.99,
+            "weight": 8.5,
+            "width": 9.19,
+            "length": 6.6,
+            "height": 13.5,
+            "storeAvailability_1_unx_d": 10,
+            "storeAvailability_2_unx_d": 7,
+            "storeAvailability_3_unx_d": 10,
+            "storeAvailability_4_unx_d": 9,
+            "storeAvailability_5_unx_d": 10,
+            "storeAvailability_6_unx_d": 10,
+            "storeAvailability_7_unx_d": 11,
+            "storeAvailability_8_unx_d": 8,
+            "storeAvailability_9_unx_d": 9,
+            "storeAvailability_10_unx_d": 10,
+            "storeAvailability_11_unx_d": 9,
+            "storeAvailability_12_unx_d": 10,
+            "storeAvailability_13_unx_d": 9,
+            "storeAvailability_14_unx_d": 0,
+            "storeAvailability_15_unx_d": 12,
+            "storeAvailability_16_unx_d": 10,
+            "storeAvailability_17_unx_d": 10,
+            "storeAvailability_18_unx_d": 11,
+            "storeAvailability_19_unx_d": 8,
+            "storeAvailability_20_unx_d": 7,
+            "storeAvailability_21_unx_d": 8,
+            "storeAvailability_22_unx_d": 10,
+            "storeAvailability_23_unx_d": 7,
+            "storeAvailability_24_unx_d": 10,
+            "storeAvailability_25_unx_d": 9,
+            "storeAvailability_26_unx_d": 10,
+            "storeAvailability_27_unx_d": 9,
+            "storeAvailability_28_unx_d": 6,
+            "storeAvailability_29_unx_d": 0,
+            "storeAvailability_90_unx_d": 0,
+            "storeAvailability_99_unx_d": 0
+          }
+        ]
+      },
+      {
+        "uniqueId": "4584",
+        "medusaId": "prod_01K06D46MAWFMT5AA21AQ6118P",
+        "title": "Swheat Scoop Original Natural Clumping Wheat Cat Litter, 25 lb bag",
+        "description": "Natural clumping wheat litter.",
+        "productUrl": "https://farmstore-modern.us/product/pet/cat-litter/litter/swheat-scoop-original-natural-clumping-wheat-cat-litter-25-lb-bag-4584",
+        "imageUrl": [
+          "https://media.farmstore.com/20181016220213/9246812_1.jpg"
+        ],
+        "notSoldOnline": "false",
+        "hidePricingOnline": "false",
+        "strictImap": "false",
+        "isNew": "false",
+        "pickupOnly": "false",
+        "limitedStockQuantity": 1,
+        "excludedStates": [],
+        "score": 0.25,
+        "variantCount": 1,
+        "variantTotal": 1,
+        "variants": [
+          {
+            "isDiscontinued": "false",
+            "variantSalePrice": 0,
+            "score": 1,
+            "weightUnit": "LB",
+            "variantMedusaId": "variant_01KEGBM846MAWFMT5AA2118PA",
+            "variantSku": "9246812",
+            "variantRetailPrice": 29.99,
+            "weight": 25,
+            "width": 13,
+            "length": 6,
+            "height": 23,
+            "storeAvailability_1_unx_d": 4,
+            "storeAvailability_2_unx_d": 2,
+            "storeAvailability_3_unx_d": 3,
+            "storeAvailability_4_unx_d": 4,
+            "storeAvailability_5_unx_d": 3,
+            "storeAvailability_6_unx_d": 4,
+            "storeAvailability_7_unx_d": 3,
+            "storeAvailability_8_unx_d": 3,
+            "storeAvailability_9_unx_d": 6,
+            "storeAvailability_10_unx_d": 1,
+            "storeAvailability_11_unx_d": 2,
+            "storeAvailability_12_unx_d": 3,
+            "storeAvailability_13_unx_d": 3,
+            "storeAvailability_14_unx_d": 0,
+            "storeAvailability_15_unx_d": 3,
+            "storeAvailability_16_unx_d": 4,
+            "storeAvailability_17_unx_d": 4,
+            "storeAvailability_18_unx_d": 3,
+            "storeAvailability_19_unx_d": 3,
+            "storeAvailability_20_unx_d": 4,
+            "storeAvailability_21_unx_d": 4,
+            "storeAvailability_22_unx_d": 5,
+            "storeAvailability_23_unx_d": 4,
+            "storeAvailability_24_unx_d": 5,
+            "storeAvailability_25_unx_d": 3,
+            "storeAvailability_26_unx_d": 2,
+            "storeAvailability_27_unx_d": 4,
+            "storeAvailability_28_unx_d": 0,
+            "storeAvailability_29_unx_d": 0,
+            "storeAvailability_90_unx_d": 0,
+            "storeAvailability_99_unx_d": 0
+          }
+        ]
+      },
+      {
+        "uniqueId": "44213",
+        "medusaId": "prod_01K06D8ED0KH8DN4PP2CV97NRJ",
+        "title": "Fresh & Natural, Advanced Odor Control Clumping Cat Litter",
+        "description": "",
+        "productUrl": "https://farmstore-modern.us/product/pet/cat-litter/litter/fresh-natural-advanced-odor-control-clumping-cat-litter-44213",
+        "imageUrl": [
+          "https://media.farmstore.com/20181016221041/1167690_1.jpg"
+        ],
+        "notSoldOnline": "false",
+        "hidePricingOnline": "false",
+        "strictImap": "false",
+        "isNew": "false",
+        "pickupOnly": "false",
+        "limitedStockQuantity": 1,
+        "excludedStates": [],
+        "score": 0.25,
+        "variantCount": 1,
+        "variantTotal": 1,
+        "variants": [
+          {
+            "isDiscontinued": "false",
+            "variantSalePrice": 0,
+            "score": 1,
+            "weightUnit": "LB",
+            "variantMedusaId": "variant_01KEGBM8R44213FRESHNAT01",
+            "variantSku": "44213-SKU",
+            "variantRetailPrice": 18.99,
+            "weight": 20,
+            "width": 12,
+            "length": 8,
+            "height": 16,
+            "storeAvailability_1_unx_d": 8,
+            "storeAvailability_99_unx_d": 40
+          }
+        ]
+      },
+      {
+        "uniqueId": "43059",
+        "medusaId": "prod_01K06D86MFVJE40S7GVNC4TTA6",
+        "title": "World's Best Cat Litter, Comfort Care Unscented Cat Litter, 15 lb",
+        "description": "Corn-based litter.",
+        "productUrl": "https://farmstore-modern.us/product/pet/cat-litter/litter/worlds-best-cat-litter-comfort-care-unscented-cat-litter-15-lb-43059",
+        "imageUrl": [
+          "https://media.farmstore.com/20181016220213/worlds-best-43059.jpg"
+        ],
+        "notSoldOnline": "false",
+        "hidePricingOnline": "false",
+        "strictImap": "false",
+        "isNew": "false",
+        "pickupOnly": "false",
+        "limitedStockQuantity": 1,
+        "excludedStates": [],
+        "score": 0.25,
+        "variantCount": 1,
+        "variantTotal": 1,
+        "variants": [
+          {
+            "isDiscontinued": "false",
+            "variantSalePrice": 0,
+            "score": 1,
+            "weightUnit": "LB",
+            "variantMedusaId": "variant_01KEGBM8R43059WORLDSB01",
+            "variantSku": "43059-SKU",
+            "variantRetailPrice": 21.99,
+            "weight": 15,
+            "width": 12,
+            "length": 10,
+            "height": 14,
+            "storeAvailability_1_unx_d": 20,
+            "storeAvailability_99_unx_d": 100
+          }
+        ]
+      }
+    ]
+  },
+  "facets": {
+    "text": {
+      "list": [
+        {
+          "facetName": "brand_uFilter",
+          "filterField": "brand_uFilter",
+          "displayName": "Brands",
+          "position": 2,
+          "values": [
+            "Fresh & Natural",
+            3,
+            "Tidy Cat",
+            2,
+            "World's Best",
+            2,
+            "Swheat Scoop",
+            1
+          ]
+        }
+      ]
+    },
+    "multilevel": {
+      "list": [
+        {
+          "breadcrumb": {},
+          "displayName": "Category",
+          "filterField": "categoryIdPath",
+          "level": 1,
+          "position": 1,
+          "values": [
+            {
+              "count": 26,
+              "name": "1068"
+            },
+            {
+              "count": 26,
+              "name": "1067"
+            },
+            {
+              "count": 26,
+              "name": "1010"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "redirect": {
+    "value": null
+  }
+}
