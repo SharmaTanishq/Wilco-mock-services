@@ -3,7 +3,7 @@ import poultryFixture from '../fixtures/unbxd-search-poultry.json';
 import fencingFixture from '../fixtures/unbxd-search-fencing.json';
 import catLitterFixture from '../fixtures/unbxd-search-cat-litter.json';
 
-export type UnbxdCommerceSearchFixture = typeof poultryFixture;
+export type UnbxdCommerceSearchFixture = typeof poultryFixture | typeof fencingFixture | typeof catLitterFixture;
 
 function deepClone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x)) as T;
@@ -59,12 +59,12 @@ function mergeCommerceSearchFixtures(
         : {}),
       q: 'merged-catalog',
       uid: 'mock-merged-poultry-fencing-cat-litter',
-    },
+    } as typeof a.searchMetaData.queryParams,
   };
-  return out;
+  return out as UnbxdCommerceSearchFixture;
 }
 
-const mergedFixture = mergeCommerceSearchFixtures(
+const mergedFixture: UnbxdCommerceSearchFixture = mergeCommerceSearchFixtures(
   poultryFixture,
   fencingFixture,
   catLitterFixture
